@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="icon" href="g/doha.png">
+      <meta name="description" content="We offer a range of banking services to meet your financial needs.">
+      <meta property="og:description" content="Providing comprehensive banking services for your financial well-being.">
+
+      <link rel="stylesheet" href="x.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="icon" href="head.png" type="image/x-icon">
+      <title>ALRAYYAN FINANCIAL BANK | Personal Banking, Business, Loans</title>
+    </head>
+
+    <body>
+
+        <div class="home_bx">
+            <div class="home_bx_header">
+                <div class="hbxHeaderLBX1">
+                    <img src="g/doha-w.png" alt="">
+                </div>
+                <div class="hbxHeaderMBX1 bgl">
+                    <ul class="homeLinks">
+                        <li>
+                            <a onclick="scrollToSection('consumer_banking')">Consumer Banking</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToSection('corporate_institutional_banking')">Corporate & Institutional Banking</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToSection('treasury')">Treasury</a>
+                        </li>
+                        <li>
+                            <a onclick="scrollToSection('ways_to_bank')">Ways To Bank</a>
+                        </li>
+                        <li>
+                            <a href="online/">Fees and charges</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hbxHeaderRBX1">
+                    <!-- MENU BTN -->
+                    <i class="material-icons" id="menu-mbl-btn" onclick="show_menu_header();">menu</i>
+                    <a id="login_btn" class="bgl bgl-login_btn" href="online/">
+                        <span>login</span>
+                        <i class="material-icons right">person</i>
+                    </a>
+
+                    <a id="language_btn" class="bgl">
+                        <span>EN</span>
+                        <i class="material-icons">expand_more</i>
+                    </a>
+
+                    <span id="divider" class="bgl"></span>
+
+                    <a id="global" class="bgl">
+                        <img src="g/wrld.png" alt="">
+                        <i class="material-icons">expand_more</i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-header hide">
+                <div class="mobile-container">
+                    <div class="mbHeader_bx">
+                        <a id="login_btn" href="online/">
+                            <span>login</span>
+                            <i class="material-icons right">person</i>
+                        </a>
+    
+                        <a id="language_btn">
+                            <span>EN</span>
+                            <i class="material-icons">expand_more</i>
+                        </a>
+    
+                        <span id="divider"></span>
+    
+                        <a id="global">
+                            <img src="g/wrld.png" alt="">
+                            <i class="material-icons">expand_more</i>
+                        </a>
+
+                        <!-- close btn for menu btn -->
+                        <i class="material-icons" id="close-menu-btn" onclick="close_menu_header();">close</i>
+                    </div>
+                    <div class="mbHeader_bx1">
+                        <ul class="homeLinks">
+                            <li>
+                                <a onclick="scrollToSection('consumer_banking'); close_menu_header();">Consumer Banking</a>
+                            </li>
+                            <li>
+                                <a onclick="scrollToSection('corporate_institutional_banking'); close_menu_header();">Corporate & Institutional Banking</a>
+                            </li>
+                            <li>
+                                <a onclick="scrollToSection('treasury'); close_menu_header();">Treasury</a>
+                            </li>
+                            <li>
+                                <a onclick="scrollToSection('ways_to_bank'); close_menu_header();">Ways To Bank</a>
+                            </li>
+                            <li>
+                                <a href="online/">Fees and charges</a>
+                            </li>
+                        </ul>
+                        <span class="mbDivider"></span>
+    
+                        <ul class="homeLinks">
+                            <li class="565">
+                                <a href="online/">About Us</a>
+                            </li>
+                            <li class="565">
+                                <a href="online/">Investor Relations</a>
+                            </li>
+                            <li class="565">
+                                <a href="online/">Media Room</a>
+                            </li>
+                            <li class="565">
+                                <a href="mailto:contactus@alrayyanfinancial.com">Contact Us</a>
+                            </li>
+                            <li class="565">
+                                <a href="online/">Privacy Notice</a>
+                            </li>
+                        </ul>
+                        <br><br><br><br>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- BOX SECTION 1 -side nav -->
+            <div class="bx1">
+                <div class="bxx1" id="slide-1">
+                    <div class="bxx1_right">
+                        <p>
+                            Alrayyan Financial Bank <br>
+                            Best Bank in the <br>
+                            Middle East 2023
+                        </p>
+                    </div>
+                </div>
+                <div class="bxx2 hide" id="slide-2">
+                    <div class="bxx2_bx">
+                        <h6>Dear Valued Clients,</h6>
+                        <p>
+                            In order to support existing beneficiaries under the National Response
+                            Guarantee Program (NRGP), Alrayyan Financial Bank (AFB) is providing a 
+                            fresh repayment period of their outstanding loans up to 5 years with 
+                            other benefits like grace period and low interest rate. To know more 
+                            about the details and apply, kindly contact your Alrayyan Financial Bank 
+                            Relationship Manager before the deadline of February 10, 2024.
+                        </p>
+                    </div>
+                </div>
+                <div class="bxx3 hide" id="slide-3">
+                    <div class="bxx2_bx">
+                        <p>
+                            Important announcement for Corporate Banking Customers
+                        </p>
+                        <p>
+                            LIBOR will cease to be  a market-wide benchmark
+                            interest rate by 31 December 2021
+                        </p>
+                        <a href="" id="lg1BTN">Check from account</a>
+                    </div>
+                </div>
+                <div class="bxx4 hide" id="slide-4">
+                    <span id="bxx4TXT">
+                        The Corporate <br>
+                        Digital Platform
+                    </span>
+
+                    <span id="bxx4TXT-1">
+                        تواصل معنا
+                    </span>
+                </div>
+                <div class="bx1_sideNav">
+                    <div id="welcome_doha" class="gradient-background">
+
+
+                        <span id="wd_1">
+                            Welcome to
+                        </span>
+                        <span id="wd_2">
+                            Alrayyan Financial Bank
+                        </span>
+                        <span id="wd_3">
+                            Qatar
+                        </span>
+                    </div>
+
+                    <ul class="linkMenu">
+                        <li class="notready">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span> About Us</span>
+                        </li>
+                        <li class="notready">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span> Investor Relations</span>
+                        </li>
+                        <li class="notready">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span> Media Room</span>
+                        </li>
+                        <li class="notready">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span> Careers</span>
+                        </li>
+                        <li class="notready--">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span> <a href="mailto:contact@alrayyanfinancial.com">Contact Us</a> </span>
+                        </li>
+                    </ul>
+
+                    <div class="socials">
+                        <span class="sclsBX">
+                            <img src="g/x.png" alt="">
+                            <span class="social_txt">33k Followers</span>
+                        </span>
+                        <span class="sclsBX">
+                            <img src="g/fb.png" alt="">
+                            <span class="social_txt">1.05 Followers</span>
+                        </span>
+                        <span class="sclsBX">
+                            <img src="g/linkedin.png" alt="">
+                            <span class="social_txt">477k Followers</span>
+                        </span>
+                        <span class="sclsBX">
+                            <img src="g/youtube.png" id="youtube" alt="">
+                            <span class="social_txt">13k Followers</span>
+                        </span>
+                        <span class="sclsBX">
+                            <img src="g/instagram.png" alt="">
+                            <span class="social_txt">43k Followers</span>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="controls">
+
+                    <span class="material-icons ctrls" id="ctrl-left" onclick="previous_slide();">keyboard_arrow_left</span>
+                    <span class="material-icons ctrls" id="ctrl-right" onclick="next_slide();">keyboard_arrow_right</span>
+                    <span class="page_counter">
+                        <span id="page_counter_number">1</span>
+                        /4
+                    </span>
+                
+                </div>
+            </div>
+
+            <!-- BOX SECTION 2  -->
+            <div class="bx2" id="consumer_banking">
+                <h4>Choose what's right for you</h4>
+
+                <div class="row">
+
+                    <div class="box-3">
+                        <div class="box-top-title">
+                            <span class="b3top_txt">
+                                Personal
+                                Banking 
+                                Services
+                            </span>
+                            <i class="material-icons">credit_card</i>
+                        </div>
+
+                        <div class="box-content">
+                            <span class="content-txt">
+                                Our personal banking services include a comprehensive range 
+                                of programs that cater to specific customers groups including
+                                kids, youth, the salaried transfer customers, the professionals,
+                                self employed, executives and entrepreneurs in addition to the 
+                                affluent customers.
+                            </span>
+                            
+                            <a href="online/" class="box-content-btn">
+                                Open account
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="box-3">
+                        <div class="box-top-title">
+                            <span class="b3top_txt">
+                                Housing,
+                                Personal &
+                                Auto Loan
+                            </span>
+                            <i class="material-icons">credit_card</i>
+                        </div>
+
+                        <div class="box-content">
+                            <span class="content-txt">
+                                Whether you need a Housing Loan,
+                                Personal Loan or an Auto Loan, 
+                                your dreams are just a heartbeat away, 
+                                with competitive interest rates.
+                            </span>
+                            
+                            <a href="online/" class="box-content-btn">
+                                Access
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="box-3" id="box-3-last">
+                        <div class="box-top-title">
+                            <span class="b3top_txt">
+                                Alrayyan 
+                                Reward 
+                                Program
+                            </span>
+                            <i class="material-icons">credit_card</i>
+                        </div>
+
+                        <div class="box-content">
+                            <span class="content-txt">
+                                The Credit Card Rewards Program from Alrayyan Financial Bank 
+                                is your ticket to enjoying a great range of free 
+                                servicees and benefits simply as a reward for 
+                                using your Cards
+                            </span>
+                            
+                            <a href="online/" class="box-content-btn">
+                                Apply
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOX SECTION 3 -->
+            <div class="bx3" id="corporate_institutional_banking">
+                <h3>Corporate & Institutional Banking</h3>
+                <p>
+                    Alrayyan Financial Bank established itself as the Bank of Choice for major international, 
+                    regional, local companies and financial institutions, providing counterparts with 
+                    their financing needs across an extensive network. With vast experience in a variety 
+                    of products and services, working with clients across sectors, Alrayyan Financial Bank is a 
+                    prominent financier in Qatar. 
+                </p>
+
+                <p>
+                    Alrayyan Financial Bank offers its clients a wide range of financing options, ranging from 
+                    corporate lending to more complex specialized financing facilities, products and services 
+                    to cater to corporate and/or institutional clients’ banking needs, providing its clients 
+                    with multiple channels to perform transactions efficiently, whether through the branch or 
+                    electronic channels.
+                </p>
+                <br><br>
+                <div class="bx3_bxx2" id="bx3_bxx2-1">
+                    <div class="bx3_bxx2-img">
+
+                    </div>
+                    <div class="bx3_bxx2-content">
+                        <span class="bx3_bxx2-contentTitle">CORPORATE FINANCE</span>
+                        <span class="bx3_bxx2-contentTxt">
+                            Backed by extensive expertise and global knowledge in infrastructure 
+                            and industrial projects, Alrayyan Financial Bank's corporate finance solutions 
+                            match clients' business needs. 
+                        </span>
+
+                        <i class="material-icons bx3_bxx2-contentBTN" >navigate_next</i>
+                    </div>
+                </div>
+
+                <div class="bx3_bxx2" id="bx3_bxx2-2">
+                    <div class="bx3_bxx2-img">
+                    </div>
+                    <div class="bx3_bxx2-content">
+                        <span class="bx3_bxx2-contentTitle">INTERNATIONAL TRANSACTION BANKING</span>
+                        <span class="bx3_bxx2-contentTxt">
+                            Alrayyan Financial Bank takes the lead in introducing innovative products and
+                            services to cater to corporate clients' banking needs.
+                        </span>
+
+                        <i class="material-icons bx3_bxx2-contentBTN">navigate_next</i>
+                    </div>
+                </div>
+
+                <div class="bx3_bxx2" id="bx3_bxx2-3">
+                    <div class="bx3_bxx2-img">
+                    </div>
+                    <div class="bx3_bxx2-content">
+                        <span class="bx3_bxx2-contentTitle">CORPORATE SOLUTIONS AND CHANNELS</span>
+                        <span class="bx3_bxx2-contentTxt">
+                            Account and Payment Services and Branch Network and EChannels
+                        </span>
+
+                        <i class="material-icons bx3_bxx2-contentBTN">navigate_next</i>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOX SECTION 4 -->
+            <div class="bx4" id="treasury">
+                <h3>Treasury</h3>
+                <p>
+                    Alrayyan FInancial Bank's Treasury department provides a broad range of investment and risk 
+                    management products for our consumers, corporate and sophisticated customers.
+                </p>
+
+                <p>For consumers and savers, products include the following: </p>
+
+                        <br><br>
+                   
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Spot FX</span>
+                        </div>
+    
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Forward FX</span>
+                        </div>
+    
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>FX swaps</span>
+                        </div>
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Deposits in local and foreign currencies</span>
+                        </div>
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Securities</span>
+                        </div>
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Options</span>
+                        </div>
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Interest rate swaps</span>
+                        </div>
+                        <div class="bx4_ul">
+                            <i class="material-icons">chevron_right</i>
+                            <span>Structured products</span>
+                        </div>
+                   
+                        <br><br>
+                        
+
+                <p>
+                    For more information on whether Alrayyan FInancial Bank can help you to manage your savings or 
+                    your business risks, please contact your Branch Manager, your Relationship manager, or 
+                    conntact Treasury directly on <a>contactus@alrayyanfinancial.com</a>
+                </p>
+            </div>
+
+            <!-- BOX SECTION 5 -->
+            <div class="bx5" id="ways_to_bank">
+                <h3>Ways to Bank</h3>
+
+                <div class="bx5_bx" id="bx5_bx-1">
+                    <div class="bx5_img" id="ways_to_bank_img-1">
+
+                    </div>
+                    <div class="bx5_content">
+                        <h4>ATM</h4>
+                        <span>
+                            Our ATM services are available to you 24/7
+                            through our ATM network across the country.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-2">
+                    
+                    <div class="bx5_content">
+                        <h4>ALRAYYAN IBANK MOBILE</h4>
+                        <span>
+                            With Alrayyanibank Mobile application on your smart phone
+                            / tablet you can conduct many of your banking transactions 
+                            easily and whenever you want.
+                        </span>
+                    </div>
+                    <div class="bx5_img" id="ways_to_bank_img-2">
+
+                    </div>
+
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-1">
+                    <div class="bx5_img"  id="ways_to_bank_img-3">
+
+                    </div>
+                    <div class="bx5_content">
+                        <h4>CUSTOMER CARE CENTER</h4>
+                        <span>
+                            Our banking services are at your disposal around the clock to 
+                            conduct your banking transactions easily and conveniently from 
+                            the comfort of your home or office through our Customer care center.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-2">
+                    
+                    <div class="bx5_content">
+                        <h4>SMS EXPRESS</h4>
+                        <span>
+                            With this service you will enjoy instant updates by receiving 
+                            SMS messages to your mobile number informing you about the 
+                            transactions conducted on your account.
+                        </span>
+                    </div>
+                    <div class="bx5_img"  id="ways_to_bank_img-4">
+
+                    </div>
+
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-1">
+                    <div class="bx5_img"  id="ways_to_bank_img-5">
+
+                    </div>
+                    <div class="bx5_content">
+                        <h4>ALRAYYANIBANK ONLINE</h4>
+                        <span>
+                            Enjoy ultimate flexibility and security while conducting your banking 
+                            transactions wherever you are and whenever you want through Alrayyan financial Online 
+                            Service.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-2">
+                    
+                    <div class="bx5_content">
+                        <h4>ALRAYYAN CONNECTION</h4>
+                        <span>
+                            Alrayyan Financial Bank’s corporate digital platform, AlrayyanbankConnect, offers a comprehensive 
+                            set of innovative online banking solutions that meet the transaction banking 
+                            requirements of corporate clients.
+                        </span>
+                    </div>
+                    <div class="bx5_img"  id="ways_to_bank_img-6">
+
+                    </div>
+
+                </div>
+
+                <div class="bx5_bx" id="bx5_bx-1">
+                    <div class="bx5_img"  id="ways_to_bank_img-7">
+
+                    </div>
+                    <div class="bx5_content">
+                        <h4>CORPORATE BUSINESS CENTER</h4>
+                        <span>
+                            The Corporate Business Center provides professional support to corporate clients
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <br><br><br>
+
+            <div class="foooter">
+                <div class="ftr_bx">
+                    <span class="ft_bx1">
+                        &copy; 2024, Alrayyan Financial Bank. All rights reserved
+                    </span>
+                    <span class="ft_bx2">
+                        FAQ Privacy Notice Security Statement Legal
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <script  id="axi_script" src="axiscript.js"></script>
+        <script src="g.js"></script>
+        <!-- <script src="x.js"></script> -->
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+  </html>
