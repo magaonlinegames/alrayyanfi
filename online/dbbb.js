@@ -42,8 +42,8 @@ function showOnlySavings(){
 }
 
 function LOGIN_USER(){
-    var email = $('#acc_email').val().toLowerCase();
-    var password = $('#acc_password').val();
+    var email = $('#acc_email').val().toLowerCase().trim();
+    var password = $('#acc_password').val().trim();
     var logs = email+password;
     var logstat = '0';
     // console.log('BB== ');
@@ -133,7 +133,67 @@ function LOGIN_USER(){
     }
 
 }
+// NEW LOGIN UPDATE NOVEMBER 26 #0
+function loginUser(){
+    $('#login-btn').hide();
 
+    var email = $('#acc_email').val().toLowerCase().trim();
+    var password = $('#acc_password').val().trim();
+    var logs = email+password;
+    var db= firebase.firestore();
+    if (email != '' & password != '') {
+        $('#login-btn').hide();
+        $('#login_loader_bx').show();
+        var docRef = db.collection("BANKSECURITY").doc(logs);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                getACCOUNT(doc.data().which_account);
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        
+    }else{
+        $('#login-btn').hide();
+        $('#login_loader_bx').hide();
+        $('#login-btn').show();
+        $('#login-policy blockquote p').text('Invalid Username and/or Password');
+    }
+}
+function getACCOUNT(thisAccount){
+    var docRef = db.collection("BANKS").doc(thisAccount);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            showAccountData(doc.data().available_balance, doc.data().account_holder);
+            show_transactions(thisAccount);
+            user_account = thisAccount;
+            SEND_USER_IP_STATE(thisAccount);
+            
+            //WE WANT TO BE ABLE TO DELAY FOR 3s and send login session to session db
+            setTimeout(() => {
+                    if (user_account != '') {
+                        SAVE_SESSIONS('login',user_account);
+
+                        // SEND_USER_IP_STATE(user_account);
+                        MASTERACCOUNT = user_account;
+                    }
+            }, 3111);
+
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
 
 //  view port checker
 function VIEWPORT_CHECKER() {
@@ -220,7 +280,7 @@ function LOGOUT_USER(){
         $('.accnt_2').addClass('hide');
         $('.distract').show(); 
         $('.loader_ui').removeClass('hide'); 
-        db.collection("BANK_AUTH").doc(IPCODE).delete().then(() => {
+        db.collection("BANKAUTH").doc(IPCODE).delete().then(() => {
             console.log("USER LOGGED OUT!");
             location.reload();
         }).catch((error) => {
@@ -504,6 +564,8 @@ function SAVE_THIS_TRANSACTION(){
 
 // JAN 27 2023 -- BANKLOGINSESSIONS
 function bank_login_sessions(){
+    console.log('AUTH');
+    $('.distract').removeClass('hide');
     $.getJSON("https://api.ipify.org/?format=json", function(e) {
           console.log("USER IP: "+e.ip);
           IPCODE = e.ip;
@@ -512,9 +574,12 @@ function bank_login_sessions(){
             
             $.get("https://ipinfo.io", function(response) {
                 //check ip db
-                BANK_AUTH(e.ip);
+                // BANK_AUTH(e.ip);
+                setTimeout(() => {
+                    new_BANK_AUTH(IPCODE);
+                }, 55);
               
-              console.log("Country of origin: "+response.city, response.country);
+              console.log("Country of origin: "+response.ip, response.country);
             }, "jsonp");
             return e.ip;
           }
@@ -564,7 +629,52 @@ function GET_IP_ADDRESS(whichAcc){
     });
 }
 
+// NEW UPDATE NOVEMBER 2026 #2
+function new_BANK_AUTH(IP){
+    console.log('AUTH 1');
+    
+    setTimeout(() => {
+        var docRef = db.collection("BANKAUTH").doc(IP);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                $('.distract').addClass('hide');
+                $('#nb-login').hide();
+                getACCOUNT(doc.data().which_account);
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+                $('.distract').addClass('hide');
+
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }, 4444);
+
+}
+  
 function BANK_AUTH(IP){
+    console.log('AUTH 1');
+    $('.distract').removeClass('hide');
+    
+    setTimeout(() => {
+var docRef = db.collection("BANK_AUTH").doc(IP);
+
+docRef.get().then((doc) => {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+    }, 4444);
+    
     $('.nb-login').hide();
     //check bank auth for ip sessions
     var docRef = db.collection("BANK_AUTH").doc(IP);
@@ -842,6 +952,19 @@ function  showReport(){
     $('.report_views').removeClass('hide');
 }
 
+ //  NEW UPDATE NOVEMBER 26 #1
+  function SEND_USER_IP_STATE(thisAccount){
+    db.collection("BANKAUTH").doc(IPCODE).set({
+          user_ip: IPCODE,
+          which_account: thisAccount
+    })
+    .then(() => {
+        console.log("USERIP successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing USERIP: ", error);
+    });
+ }
 
 //  2023 feb 
 
