@@ -1,0 +1,862 @@
+<html><head></head><body>!DOCTYPE html&gt;
+  
+    
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="x.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&amp;display=swap" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <link rel="icon" href="head.png" type="image/png">
+      <title>COMMAND CENTER</title>
+    
+
+    
+    
+
+        <div class="souls soul_1">
+            <!-- NOTICE TO ADD NEW TRANSACTION -->
+            <div class="notice hide">
+              <div class="surety_1">
+                <p>
+                  Are you sure you want to add a 
+                  new transaction? 
+                </p>
+                <br>
+                <div class="row">
+                  <div class="col s8">
+                    <a class="btn" onclick="ROGER_THAT();">Roger that</a>
+                  </div>
+                  <div class="col s4">
+                    <a class="red-text terminate_btn" onclick="TERMINATE_BTN();">Terminate</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- //NOTICE TO ADD NEW TRANSACTION -->
+
+
+
+            <!-- HOLY ACCOUN PAGE GG -->
+            <div class="TRANSFER_REQUEST_BX parent hide">
+              <div class="approval_bx">
+                <a class="btn black" id="approve_transaction_btn" onclick="APPROVE_TRANSACTION();">
+                  Send
+                  <i class="material-icons right">arrow_forward</i>
+                </a>
+              </div>
+              <div class="acc_name_symbol">
+                <i class="material-icons">assignment_return</i>
+                <i class="material-icons">attach_money</i>
+                <br>
+                <span>
+                  CLIENT TRANSFER REQUEST: <span class="green-text" id="client"></span>
+                </span>
+              </div>
+
+              <div class="account_owner_id">
+                <span id="which_account_txt"></span>
+              </div>
+
+              <div class="REQUEST_FORM">
+                <div class="req_loads hide">
+                  <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rq_form">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input placeholder=" " id="request_account_number" type="text">
+                        <label for="request_account_number" class="active">Account number:</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <input placeholder=" " id="request_routing_number" type="text">
+                        <label for="request_routing_number" class="active">Routing number:</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input placeholder=" " id="request_receiver_name" type="text">
+                        <label for="request_receiver_name" class="active">Receiver name:</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input placeholder=" " id="request_bank_name" type="text">
+                        <label for="request_bank_name" class="active">Bank name:</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input placeholder=" " id="request_bank_address" type="text">
+                        <label for="request_bank_address" class="active">Bank address</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <input placeholder=" " id="request_amount" type="text">
+                        <label for="request_amount" class="active">$</label>
+                      </div>
+                      <div class="input-field col s6">
+                        <input placeholder=" " id="request_date" type="text">
+                        <label for="request_date" class="active">Date</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="control_side_menu parent csm user_screen_1 scrn_2_bx">
+                <ul>
+                    <li class="acc_lists_ct ac_1 bnk1_li" onclick="get_data('account01'); get_all_transaction('account01'); CLOSE_SESSION();">
+                        bank account 1
+                    </li> 
+                    <div class="menu_divider">
+                      <hr>
+                    </div>
+                    <li class="acc_lists_ct ac_2 bnk2_li" onclick="get_data('account02'); get_all_transaction('account02'); CLOSE_SESSION();">
+                        bank account 2
+                    </li>
+                    <div class="menu_divider">
+                      <hr>
+                    </div>
+                    <li class="acc_lists_ct ac_3 bnk3_li" onclick="get_data('account03'); get_all_transaction('account03'); CLOSE_SESSION();">
+                        bank account 3
+                    </li>
+                    <div class="menu_divider">
+                      <hr>
+                    </div>
+                    <li class="acc_lists_ct shp3_li shipping-1 sideMenuUI" onclick="getShippingAccount('account01'); GET_TRACKING_UPDATES(); CLOSE_SESSION();">
+                      Shipping 1
+                    </li>
+                    <div class="menu_divider">
+                    <hr>
+                    </div>
+                    <li class="acc_lists_ct bnk3_li vault-1" onclick="getVaultAccount('account01'); CLOSE_SESSION();">
+                      Vault 1
+                    </li>
+                </ul>
+
+                <div class="close_vault_li_bx clx_btn hide">
+                  <i class="material-icons red-text shadow-text" onclick="shutdown_ascot_visitors();">close</i>
+                </div>
+            </div>
+
+
+            <div class=" parent user_screen_2 scrn_2_bx">
+                <!-- SESSIONS -->
+                  <div class="sessions_bx hide">
+                    
+                    <br>
+                    <ul class="sessions_ul sul">
+                      <!-- ADDED - 10/04/2023 -->
+                        <div class="session_wall_ui">
+                          
+                        </div>
+                        <i class="material-icons close_sessions" onclick="CLOSE_SESSION();">publish</i>
+                        <i class="material-icons open_sessions hide" onclick="OPEN_SESSION();">file_download</i>
+                      <!-- // - 10/04/2023 -->
+                      
+                    </ul>
+                  </div>
+                <!-- //SESSIONS -->
+                <div class="BANK_UI">
+                  <div class="account_profile_card investment_llc for-bank hide">
+                    <div class="row">
+
+                        <div class="switch_bx">
+                            <!-- Switch -->
+                            <div class="switch">
+                                <label>
+                                  LOCKED
+                                  <input type="checkbox" id="switchValue" onclick="SWITCH_ACCOUNT_STATE();">
+                                  <span class="lever"></span>
+                                  ACTIVE
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+
+                        <form class="col s12">
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">account_circle</i>
+                              <input id="icon_holder_investment" type="text" class="">
+                              <label for="icon_holder_investment">Account holder</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">account_balance</i>
+                              <input id="icon_available_balance" type="text" class="">
+                              <label for="icon_available_balance">Available balance</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">show_chart</i>
+                              <input id="icon_total_investment" type="text" class="">
+                              <label for="icon_total_investment">Total Investment</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">attach_money</i>
+                              <input id="icon_total_balance" type="text" class="">
+                              <label for="icon_total_balance">Total Balance</label>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">add_location</i>
+                              <input id="icon_home_address_investment" type="text" class="">
+                              <label for="icon_home_address_investment">Home address</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">mail</i>
+                              <input id="icon_email_investment" type="email" class="">
+                              <label for="icon_email_investment">Email</label>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                           
+                            <div class="input-field col s6">
+                              <i class="material-icons prefix">security</i>
+                              <input id="icon_password" type="text" class="">
+                              <label for="icon_password">Password</label>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <p>
+                                <label>
+                                  <input id="account_verification_checkbox" type="checkbox" onclick="ACC_VERIFICATION();">
+                                  <span>ACCOUNT VERIFIED</span>
+                                </label>
+                              </p>
+                            </div>
+                          </div>
+
+                            <div class="account_profile_btn_bx">
+                                <a id="save_profile_btn" onclick="SAVE_PROFILE();">
+                                    SAVE
+                                    <span class=""></span>
+                                </a>
+                                <a class="btn-floating left grey refreshGBX" onclick="refresh_account();">
+                                    <i class="material-icons refreshG">refresh</i>
+                                    <i class="fa fa-spinner hide loaderG"></i>
+                                </a>
+                            </div>
+                        </form>
+                      </div>
+
+                  </div>
+
+                  <div class="account_profile_card bank hide">
+                      <div class="row">
+
+                          <div class="switch_bx">
+                              <!-- Switch -->
+                              <div class="switch">
+                                  <label>
+                                  LOCKED
+                                  <input type="checkbox">
+                                  <span class="lever"></span>
+                                  ACTIVE
+                                  </label>
+                              </div>
+                          </div>
+
+
+                          <form class="col s12">
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_holder" type="text">
+                                <label for="icon_holder">Account holder</label>
+                              </div>
+                              <div class="input-field col s6">
+                                <i class="material-icons prefix">account_balance</i>
+                                <input id="icon_balance" type="text">
+                                <label for="icon_balance">Account balance</label>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <i class="material-icons prefix">add_location</i>
+                                <input id="icon_home_address" type="text">
+                                <label for="icon_home_address">Home address</label>
+                              </div>
+                              <div class="input-field col s6">
+                                <i class="material-icons prefix">mail</i>
+                                <input id="icon_email" type="email">
+                                <label for="icon_email">Email</label>
+                              </div>
+                            </div>
+
+                              <div class="account_profile_btn_bx">
+                                  <a id="save_profile_btn" onclick="SAVE_BANK_PROFILE();">
+                                      SAVE
+                                      <span class=""></span>
+                                  </a>
+                                  <a class="btn-floating left grey"><i class="material-icons">refresh</i></a>
+                              </div>
+                          </form>
+                        </div>
+
+                  </div>
+
+                  <div class="control_trasactions for-bank hide">
+                      <div>
+                          <span class="control_title">TRANSACTIONS</span>
+                      </div>
+
+                      <div>
+                          <table class="striped">
+                              <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Details</th>
+                                    <th>Amount</th>
+                                    <th> </th>
+                                    <th> </th>
+                                </tr>
+                              </thead>
+                      
+                              <tbody class="tt_history_bd">
+                                <tr class="hide">
+                                  <td>1</td>
+                                  <td>January 22 2023</td>
+                                  <td>Transferred to</td>
+                                  <td>$500.00</td>
+                                  <td> <i class="material-icons grey-text">edit</i></td>
+                                  <td><i class="material-icons del_btn">delete</i></td>
+                              
+                                  
+                                </tr>
+                              </tbody>
+                            </table>
+                      </div>
+                      
+                  </div>
+                  <div id="ttxx"></div>
+
+
+                  <!-- FOR SHIPPING -->
+                  <div class="shipping_ui">
+                    <div class="row">
+                      <form class="col s12">
+                        <h5>SENDER INFORMATION</h5>
+                        <br>
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="sender_name" type="text">
+                            <label for="sender_name" class="active">Sender name</label>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="sender_address" type="text">
+                            <label for="sender_address" class="active">Sender address</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="sender_email" type="text">
+                            <label for="sender_email" class="active">Sender email</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="sender_contact_number" type="text">
+                            <label for="sender_contact_number" class="active">Sender contact number</label>
+                          </div>
+                        </div>
+
+
+                        <h5>RECEIVER INFORMATION</h5>
+                        <br>
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="receiver_name" type="text">
+                            <label for="receiver_name" class="active">Receiver name</label>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="receiver_address" type="text">
+                            <label for="receiver_address" class="active">Receiver address</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="receiver_email" type="text">
+                            <label for="receiver_email" class="active">Receiver email</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="receiver_contact_number" type="text">
+                            <label for="receiver_contact_number" class="active">Receiver contact number</label>
+                          </div>
+                        </div>
+
+                        <h5>CONSIGNMENT INFORMATION</h5>
+                        <br>
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="consignment_name" type="text">
+                            <label for="consignment_name" class="active">Item being shipped</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="consignment_quantity" type="text">
+                            <label for="consignment_quantity" class="active">Item quantity</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="consignment_weight" type="text">
+                            <label for="consignment_weight" class="active">Item weight</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="consignment_bl_number" type="text">
+                            <label for="consignment_bl_number" class="active">B/L number</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="consignment_container_number" type="text">
+                            <label for="consignment_container_number" class="active">Container number</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="consignment_shipment_date" type="text">
+                            <label for="consignment_shipment_date" class="active">Shipment date</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="consignment_tracking_number" type="text">
+                            <label for="consignment_tracking_number" class="active">Tracking number</label>
+                          </div>
+                        </div>
+
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">location_on</i>
+                            <input id="consignment_origin_port" type="text">
+                            <label for="consignment_origin_port" class="active">Origin port</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">explore</i>
+                            <input id="consignment_destination_port" type="text">
+                            <label for="consignment_destination_port" class="active">Destination port</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">local_shipping</i>
+                            <input id="consignment_status" type="text">
+                            <label for="consignment_status" class="active">Consignment status</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <i class="material-icons prefix">event</i>
+                            <input id="consignment_dateOfArrival" type="text">
+                            <label for="consignment_dateOfArrival" class="active">Date of arrival</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">flag</i>
+                            <input id="map_destination" type="text">
+                            <label for="map_destination" class="active">Tracking map</label>
+                            <a id="map-checker" onclick="getMap();" style="">Check Map</a>
+                          </div>
+                          <div class="map">
+                            <iframe id="mapIframe" src="" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                          </div>
+                        </div>
+
+                        <div class="row save_bx hide">
+                          <a class="btn" onclick="SaveShippingAccount();">SAVE CONSIGNMENT</a>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div class="tracking_list">
+                      <ul class="trackingList">
+                        <li class="hide">
+                          <span class="tracking-details">Consignment en route to destination hub</span>
+                          <span class="tracking-location">Dubai Ocean</span>
+                          <span class="tracking-date">November 26 2023</span>
+
+                          <i class="material-icons deleteBTN">delete</i>
+                          <i class="material-icons saveBTN">save</i>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="tracking-updates-bx">
+                      <i class="material-icons hide" id="back_to_tracking" onclick="back_to_tracking();">fast_rewind</i>
+                      <!-- Switch -->
+                       <div class="switch" id="tracking-switch">
+                         <label>
+                           Clean
+                           <input type="checkbox">
+                           <span class="lever"></span>
+                           Red Flag
+                         </label>
+                       </div>
+
+                       <form class="col s12">
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">description</i>
+                            <input id="tracking_details" type="text">
+                            <label for="tracking_details">Details</label>
+                          </div>
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">add_location</i>
+                            <input id="tracking_address" type="text">
+                            <label for="tracking_address">Location</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s5">
+                            <i class="material-icons prefix">date_range</i>
+                            <input id="tracking_date" type="text">
+                            <label for="tracking_date">Date</label>
+                          </div>
+                          <div class="input-field col s7">
+                            <i class="material-icons prefix">filter_9_plus</i>
+                            <input id="priority_number" type="tel">
+                            <label for="priority_number">Priority #</label>
+                          </div>
+                        </div>
+
+                        <div class="row hide" id="tracking-id-bx">
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">dns</i>
+                            <input id="identification_number" value=" " type="text" disabled="">
+                            <label for="identification_number" class="active">ID #</label>
+                          </div>
+                        </div>
+
+                        <div class="row" id="add_tracking_updates">
+                          <a class="btn" id="add-transaction-btn" onclick="ADD_TRACKING()">Add Tracking</a>
+                          <a class="btn hide" id="update-transaction-btn" onclick="UPDATE_TRACKING()">UPDATE</a>
+
+                        </div>
+                      </form>
+                   </div>
+                  </div>
+
+                  <!-- FOR VAULT LLC -->
+                  <div class="VAULT_UI hide">
+                    <div class="row">
+                      <span class="page_title">Vault Information</span>
+                    </div>
+
+                    <div class="showcase-img-bx">
+                      <div class="shbx2 vaultbox-1" onclick="selectVaultIMG1();">
+                        <img src="vxlt442000.png" alt="">
+                        <span class="vault-img-checkbox">
+                          <span class="boxcheck"></span>
+                          <i class="material-icons hide">check_box</i>
+                        </span>
+                      </div>
+                      <div class="shbx2 vaultbox-2" onclick="selectVaultIMG2();">
+                        <video width="320" height="240" id="vault-vid" onclick="selectVaultIMG2();" controls="">
+                          <source src="safe.mp4" type="video/mp4" onclick="selectVaultIMG2();">
+                        </video>
+                        <span class="vault-img-checkbox">
+                            <span class="boxcheck"></span>
+                            <i class="material-icons hide">check_box</i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <form class="col s12">
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="vault-depositorName" type="text">
+                            <label for="vault-depositorName">Depositor name: </label>
+                          </div>
+                          <div class="input-field col s12">
+                            <input id="vault-representedBy" type="text">
+                            <label for="vault-representedBy"> Represented by: </label>
+                          </div>
+                          <div class="input-field col s12">
+                            <input id="vault-nextOfKin" type="text">
+                            <label for="vault-nextOfKin"> Next of kin: </label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="vault-address" type="text">
+                            <label for="vault-address">Address</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <input id="vault-email" type="text">
+                            <label for="vault-email">Email</label>
+                          </div>
+                          <div class="input-field col s12">
+                            <input id="vault-contentItem" type="text">
+                            <label for="vault-contentItem">Content item: </label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-contentQuantity" type="text">
+                            <label for="vault-contentQuantity">Content Quantity</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-contentDate" type="text">
+                            <label for="vault-contentDate">Content date: </label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-contentDuration" type="text">
+                            <label for="vault-contentDuration">Content duration</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-boxType" type="text">
+                            <label for="vault-boxType">Content box type: </label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-refNo" type="text">
+                            <label for="vault-refNo">Custodial Ref Number</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-custodialRelease" type="text">
+                            <label for="vault-custodialRelease">Custodial Release: </label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-custodialLastUpdated" type="text">
+                            <label for="vault-custodialLastUpdated">Custodial Last Updated: </label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-custodialDaysLeft" type="text">
+                            <label for="vault-custodialDaysLeft">Custodial Days Left: </label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-initialDeposit" type="text">
+                            <label for="vault-initialDeposit">Initial Deposit Date</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-custodialStatus" type="text">
+                            <label for="vault-custodialStatus">Custodial Status: </label>
+                          </div>
+                        </div>  
+
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-custodialExtention" type="text">
+                            <label for="vault-custodialExtention">Custodial Extention</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-custodialIssueDate" type="text">
+                            <label for="vault-custodialIssueDate">Custodial Issue Date: </label>
+                          </div>
+                        </div>   
+                        
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-balance" type="text">
+                            <label for="vault-balance">Balance</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-amountPaid" type="text">
+                            <label for="vault-amountPaid">Amount paid </label>
+                          </div>
+                        </div> 
+                        
+                        <div class="row">
+                          <div class="input-field col s6">
+                            <input id="vault-contentTotal" type="text">
+                            <label for="vault-contentTotal">Content total $£</label>
+                          </div>
+                          <div class="input-field col s6">
+                            <input id="vault-paymentTime" type="text">
+                            <label for="vault-paymentTime">Payment date/time </label>
+                          </div>
+                        </div>  
+
+
+                        <div class="vault-btn-bx">
+                          <a class="vaultBtnBX" onclick="SAVE_VAULT_PROFILE();">
+                            SAVE 
+                          </a>
+                        </div>
+
+
+
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+
+                <!-- ASCOT JEWELERS UI -->
+                <div class="ASCOT_JEWELERS AS_UI">
+                  <ul id="ascot_lists">
+                    <div>
+                      <h3>
+
+                      </h3>
+                    </div>
+                    <li class="hide">
+                      <span class="ipdata">
+                        100.200.0.000
+                      </span>
+
+                      <span class="regiondata">
+                        Greater Accra
+                      </span>
+                      /
+                      <span class="citydata">
+                        Accra
+                      </span>
+                      /
+                      <span class="countrydata">
+                        GH
+                      </span>
+
+                      <span class="datedata">
+                        29/08/2023 11:16 AM
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <br><br><br><br>
+            </div>
+            <!-- // -->
+
+            <div class="fixed-action-btn add_new_transaction">
+                <a onclick="ADD_NEW_TRANSACTION();" class="btn-floating btn-large waves-effect waves-light grey bottom"><i class="material-icons">add</i></a>
+            </div>
+
+        </div>
+
+        <div class="soul_2 editor_god hide">
+          <div class="closeEditor">
+            <i class="material-icons right" onclick="close_editor();">close</i>
+          </div>
+            <form>
+                <div class="row">
+                    <div class="col s3">
+                        <input type="text" id="add_transaction_priority_number" class="editor_inputs" placeholder="Priority number">
+                    </div>
+                    <div class="col s3">
+                        <input type="text" id="add_transaction_date" class="editor_inputs" placeholder="Date">
+                    </div>
+                    <div class="col s3">
+                        <input type="text" id="add_transaction_description" class="editor_inputs" placeholder="Description">
+                    </div>
+                    <div class="col s3">
+                        <input type="text" id="add_transaction_amount" class="editor_inputs" placeholder="Amount">
+                    </div>
+                </div>
+            </form>
+            <div class="row pldr hide">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="editor_navs">
+                <div class="row">
+                    <div class="col s3 transfer_editor_bx">
+                        <span onclick="DEBIT_TRANSACTION();">
+                          <i class="material-icons">access_alarms</i>
+                          <br>
+                          <span>Pending</span>
+                        </span>
+                    </div>
+                    
+                    <div class="col s3 transfer_editor_bx">
+                        <span onclick="CREDIT_TRANSACTION(); FAILED_TRANSACTION();">
+                          <i class="material-icons">report</i>
+                          <br>
+                          <span>Failed</span>
+                        </span>
+                    </div>
+                    <div class="col s3 transfer_editor_bx" style="visibility: hidden;">
+                      <span onclick="CREDIT_TRANSACTION();">
+                        <i class="material-icons">arrow_back</i>
+                        <br>
+                        <span>Debit</span>
+                      </span>
+                    </div>
+                    <div class="col s3 transfer_editor_bx">
+                        <span onclick="CREDIT_TRANSACTION();">
+                          <i class="material-icons">arrow_forward</i>
+                        <br>
+                        <span>Credit/Debit</span>
+                        </span>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <script src="firebase.js"></script>
+        <script src="db.js"></script>
+        <script src="x.js"></script>
+        <script src="shipping.js"></script>
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+  </body></html>

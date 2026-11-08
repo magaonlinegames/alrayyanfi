@@ -1,0 +1,756 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* shipping */
+.shipping_ui{
+    padding: 15px;
+}
+.shipping_ui h3{
+    color: #23232395;
+}
+.save_bx{
+}
+.save_bx a{
+    padding: 6px;
+    width: 173px;
+    height: 45px;
+    display: block;
+    margin: auto;
+}
+#map-checker{
+    display: block;
+    text-align: right;
+    cursor: pointer;
+}
+
+/* AXI STRATEGY */
+.axi_strategy_bx{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 777;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+#close_axi{
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    color: black;
+    z-index: 778;
+    background-color: white;
+}
+.left-side-menu{
+    position: absolute;
+    left: 0;
+    min-width: 293px;
+    background-color: rgb(0, 0, 0);
+    top: 0;
+    bottom: 0;
+}
+.listOfAccounts li{
+    background-color: #d8d8d84a;
+    color: #bebebe;
+    padding: 0px 6px;
+    margin-top: 1px;
+    cursor: pointer;
+}
+.listOfAccounts li:hover{
+    color: white;
+}
+.logname, .logemail{
+    display: block;
+}
+.logname{
+    position: relative;
+    top: 3px;
+}
+.logemail{
+    position: relative;
+    top: -3px;
+}
+.title_bx{
+    text-align: center;
+    padding: 6px;
+}
+.title_bx span{
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #aaaaaa;
+}
+.title_bx hr{
+    border-color: #aaaaaa;
+    width: 157px;
+    margin: auto;
+}
+.main-content{
+    position: absolute;
+    left: 293px;
+    width: 500px;
+    width: 65%;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+#main_content_bx{
+    padding-top: 8px;
+    width: 101%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.save-account-button {
+    display: block;
+    margin: auto;
+    margin-bottom: 26px;
+    background-color: #232323; /* White background color */
+    color: #fafcff; /* Text color */
+    font-size: 16px;
+    width: 90%;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.save-account-button:hover {
+    background-color: #d8d8d84a; /* Change background color on hover */
+    color: black; /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance box shadow on hover */
+}
+.save-account-button:active{
+    background-color: #d8d8d84a; /* Change background color on hover */
+    color: black;
+}
+
+.new_user_bx{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 888;
+    overflow: auto;
+
+}
+#requestNewUserBx{
+    width: 300px;
+    margin: auto;
+    margin-top: 5%;
+}
+#newUserPrimeEfx{
+    font-size: 17px;
+    color: red;
+}
+.primeRequestBtnBX{
+    /* border: 1px solid black; */
+    width: 93%;
+    max-width: 279px;
+    text-align: right;
+}
+.primeRequestBtnBX a{
+    display: inline-block;
+    padding: 7px;
+    text-transform: capitalize;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#primeAccept{
+    color: black;
+}
+#primeAccept:hover{
+    background-color: black;
+}
+#primeReject:hover{
+    background-color: #656565;
+}
+#primeReject{
+    color: #656565;
+}
+.primeRequestBtnBX a:hover{
+    display: inline-block;
+    color: white!important;
+}
+.card-for-newUser{
+    width: 95%;
+    max-width: 555px;
+    margin: auto;
+    box-shadow: 4px 4px 12px grey;
+    padding: 6px;
+    border-radius: 6px;
+    margin-top: 5%;
+    margin-bottom: 40px;
+}
+#title_bx{
+    text-transform: uppercase;
+    padding: 12px;
+    color: #868686;
+    text-align: center;
+}
+
+.prime_select_bx{
+    text-align: center;
+}
+.save-prime-account-button, .cancel-prime-account-button{
+    display: inline-block;
+    margin: auto;
+    width: 200px;
+    padding: 9px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.cancel-prime-account-button:active {
+    background-color: #e72d2d;
+    color: black;
+}
+.cancel-prime-account-button{
+    color: red;
+    background-color: transparent;
+}
+.prime_loader {
+    border: 3px solid #f3f3f3; /* Light gray border */
+    border-top: 5px solid #75a524; /* Blue border (replace with your desired color) */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Spinning animation */
+    margin: 15px;
+    margin: auto;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+/* //AXI STRATEGIC PARTNERS */
+
+
+/* ascot jewelers */
+.shadow-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.close_vault_li_bx i{
+    cursor: pointer;
+}
+.AS_UI ul{
+    margin-top: 10%;
+    width: 80%;
+}
+.AS_UI ul li{
+    padding: 20px 5px;
+    border-bottom: 1px solid white;
+    position: relative;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    left: 3px;
+    top: 3px;
+    cursor: pointer;
+}
+.AS_UI ul li:hover{
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+}
+.clx_btn{
+    position: fixed;
+    bottom: 0;
+    margin: 10px;
+    left: 5%;
+}
+.ipdata{
+    display: block;
+}
+.datedata{
+    position: absolute;
+    bottom: 0;
+    right: 2%;
+}
+
+.souls{
+    z-index: 555;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    overflow: hidden;
+}
+/* BANK TRANSFER REQUESTS */
+.transfer_requests{
+    border: 5px solid rgb(255, 255, 255);
+    width: 266px;
+    position: absolute;
+    z-index: 777;
+    height: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.symbol_rq{
+    text-align: center;
+    padding: 5px;
+}
+
+.csm ul{
+    width: 100%;
+    top: 5%;
+    height: 90%;
+}
+.csm ul li{
+    margin-top: 23%;
+    font-family: 'Libre Baskerville', serif;
+    text-transform: uppercase;
+    text-align: center;
+    color: #c8c8c8;
+}
+.csm ul li:hover{
+    letter-spacing: 2px;
+    font-size: 15px;
+    transition: .5s;
+    cursor: pointer;
+    color: rgba(14, 14, 14, 0.596);
+}
+.sideMenuUI{
+    letter-spacing: 2px;
+    font-size: 15px;
+    transition: .5s;
+    cursor: pointer;
+    color: rgb(203, 40, 40)!important;
+}
+
+
+
+.account_profile_card{
+    background-color: #ededed;
+    width: 90%;
+    max-width: 780px;
+    margin-top: 5%;
+    margin-left: 22px;
+    padding: 8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+/* 20022023 */
+.verify_symbol_bx{
+    text-align: center;
+}
+.refreshGBX{
+    width: 30px;
+    height: 30px;
+}
+.refreshGBX i{
+    line-height: 31px;
+    color: #ededed;
+}
+.switch{
+    text-align: center!important;
+}
+.control_mainView .prefix{
+    color: #c8c8c8!important;
+}
+.control_mainView .prefix.active{
+}
+
+.account_profile_btn_bx{
+    text-align: right;
+}
+#save_profile_btn{
+    background-color: #c8c8c8;
+    color: black;
+    font-size: 10px;
+    line-height: 29px;
+    height: 28px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    
+}   
+
+/* ACCOUNT TRANSACTION */
+.EDTBTN{
+    cursor: pointer;
+}
+.control_trasactions{
+    display: inline-block;
+    background-color: #ededed;
+    width: 90%;
+    margin: auto;
+    margin-top: 5%;
+    margin-left: 8%;
+    padding: 8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.del_btn{
+    color: #ee948d!important;
+}
+.tt_history_bd tr{
+    position: relative;
+}
+.tt_row{
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    
+    top: 0;
+}
+.cl_2{
+    display: inline-block;
+    width: 48%;
+    text-align: center;
+    margin-top: 11px;
+}
+
+/* SOUL 2 EDITOR */
+.transfer_editor_bx{
+    cursor: pointer;
+}
+.soul_2{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid rgb(237 237 237);
+    z-index: 666;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.closeEditor{
+    margin: 8px;
+    height: 29px;
+}
+.open_editor{
+    height: fit-content;
+    transition: 3s;
+}
+.editor_navs{
+    text-align: center;
+    height: 0;
+    color: #c8c8c8;
+}
+.pldr{
+    text-align: center;
+}
+.soul_2 input{
+    text-align: center;
+}
+
+.notice{
+    position: fixed;
+    z-index: 666;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+.surety_1{
+    width: 255px;
+    margin: auto;
+    margin-top: 8%;
+    padding: 20px;
+    padding-bottom: 2px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+}
+.terminate_btn{
+    position: relative;
+    top: 6px;
+}
+/* VIEWS */
+
+.menu_divider{
+    position: relative;
+    top: 3%;
+}
+.user_screen_1{
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    background-color: black;
+}
+.user_screen_2{
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+}
+.close_sessions, .open_sessions{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: block;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.sessions_bx{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 266px;
+    border-left: 1px solid rgb(151, 151, 151);
+    border-right: 1px solid rgb(151, 151, 151);
+    border-bottom: 1px solid rgb(151, 151, 151);
+    background-color: white;
+    z-index: 777;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-height: 100%;
+    overflow: hidden;
+}
+.session_wall_ui{
+    overflow: hidden;
+    overflow-y: auto;
+    /* max-height: 500px; */
+    padding-bottom: 35px;
+}
+.sul li{
+    padding-bottom: 14px;
+}
+.sul_hides{
+    height: 1%;
+    overflow: hidden;
+}
+.session_date{
+    display: inline-block;
+    margin-left: 10px;
+}
+.user_dir{
+    display: block;
+}
+.sul li{
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    padding-left: 10px;
+}
+.dvid1{
+    font-size: 12px;
+}
+.scrn_2_bx{
+    float: left;
+}
+@media screen  and (max-width: 577px)
+and (min-width: 0px){
+   
+}
+
+
+.parent {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.parent::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+
+.approval_bx{
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.774);
+    width: 100%;
+    z-index: 777;
+}
+.approval_bx .btn{
+    width: 169px;
+    text-align: left;
+}
+.req_loads{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40%;
+}
+.TRANSFER_REQUEST_BX{
+    position: absolute;
+    right: 0;
+    width: 30%;
+    max-width: 299px;
+    border: 1px solid rgb(0, 0, 0);
+    z-index: 777;
+    overflow: auto;
+    background-color: white;
+    top: 25px;
+    height: 96%;
+    width: 259px;
+    /* min-width: 259px; */
+}
+.acc_name_symbol{
+    text-align: center;
+    padding: 10px;
+}
+.account_owner_id{
+    position: absolute;
+    top: 0%;
+    background-color: black;
+    padding-left: 3px;
+    color: #c8c8c8;
+}
+
+/* BLUEPRINT ROMODELLED */
+
+@media screen and (max-width: 750px) 
+and (min-width: 0){
+    .user_screen_1{
+        width: 0%;
+    }
+    .user_screen_2{
+        width: 100%;
+    }
+}
+
+
+
+/* TRACKING UPDATES CARD */
+#back_to_tracking{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.tracking-updates-bx .switch label input[type=checkbox]:checked+.lever {
+    background-color: #b05e5e;
+}
+.tracking-updates-bx .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #a40000;
+}
+.tracking-updates-bx label{
+    color: black;
+}
+.tracking-updates-bx{
+    width: 95%;
+    border-radius: 3px;
+    padding: 6px;
+    background-color: #c8c8c8;
+    box-shadow: 4px 4px 12px grey;
+    position: relative;
+}
+#add_tracking_updates{
+    padding: 8px;
+}
+#add_tracking_updates a{
+    display: block;
+    width: 90%;
+    background: black;
+    margin: auto;
+    text-align: center;
+    border-radius: 8px;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.deleteBTN{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+
+}
+.saveBTN{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+.tracking_list{
+    padding-bottom: 30px;
+}
+.tracking_list span{
+    display: block;
+}
+.tracking_list ul li{
+    position: relative;
+    padding: 5px;
+    width: 95%;
+    margin-top: 3px;
+    border-radius: 3px;
+    background-color: #e7e7e7;
+    box-shadow: 4px 4px 12px grey;
+}
+.tracking-location{
+    position: relative;
+    top: -6px;
+}
+.tracking-date{
+    position: relative;
+    top: 0;
+    font-size: 13px;
+}
+.tracking-details, .tracking-location, .tracking-date{
+    text-transform: capitalize;
+}
+
+
+/* for vault */
+.showcase-img-bx{
+    /* border: 1px solid grey; */
+    height: 330px;
+    margin-bottom: 50px;
+}
+.shbx2{
+    float: left;
+    height: 95%;
+    margin: 6px;
+    /* border: 1px solid grey; */
+    width: 48%;
+    text-align: center;
+}
+.shbx2 img{
+    box-shadow: 4px 4px 12px grey;
+}
+.vault-img-checkbox{             
+    width: 100%;
+    padding: 6px;
+    display: block;
+    text-align: center;
+    /* background-color: red; */
+}
+.boxcheck{
+    padding: 14px;
+    display: inline-block;
+    border: 1px solid #232323;
+}
+.vault-img-checkbox label{ 
+    display: inline-block;
+    padding: 14px;
+    /* left: 30px; */
+}
+.vault-img-checkbox i{
+    font-size: 30px;
+    position: relative;
+    left: -33px;
+    top: 0px;
+}
+.VAULT_UI{
+    padding: 13px;
+}
+.VAULT_UI .page_title{
+    font-size: 16px;
+}
+
+.vault-btn-bx a{
+    display: block;
+    background-color: #434141;
+    color: #a9a9a9;
+    padding: 5px;
+    text-align: center;
+    border-radius: 3px;
+}
+.vault-btn-bx a:hover{
+    background-color: #000;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
