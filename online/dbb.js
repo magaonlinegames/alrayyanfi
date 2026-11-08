@@ -219,7 +219,7 @@ function LOG_USER_OUT(){
       console.log("Error getting documents: ", error);
   });
  }
- function SEND_USER_IP_STATE(ACCOUNT){
+ function SEND_USER_IP_STATE-dead(ACCOUNT){
   firebase.firestore().collection("BANKAUTH").add({
       user_ip: IPCODE,
       user_city: IP_CITY,
@@ -233,6 +233,8 @@ function LOG_USER_OUT(){
         console.error("Error adding IPADDRESS: ", error);
     });
  }
+
+
  function LOGIN_USER(){
   var EMAIL = $("#acc_email").val().toLowerCase();
   var  PASSWORD = $('#acc_password').val();
@@ -334,6 +336,8 @@ function LOG_USER_OUT(){
   $('#login-policy blockquote p').text('');
  }
  function GET_IP_ADDRESS(){
+  $('.distract').show();
+
   $.getJSON("https://api.ipify.org/?format=json", function(e) {
     console.log("USER IP: "+e.ip);
     if (e.ip != "") {
