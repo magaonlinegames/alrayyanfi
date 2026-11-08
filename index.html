@@ -1,590 +1,1487 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <link rel="icon" href="g/doha.png">
-      <meta name="description" content="We offer a range of banking services to meet your financial needs.">
-      <meta property="og:description" content="Providing comprehensive banking services for your financial well-being.">
-
-      <link rel="stylesheet" href="x.css">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="en" dir="ltr">
+  <head>
     
-      <link rel="icon" href="head.png" type="image/x-icon">
-      <title>ALRAYYAN FINANCIAL BANK | Personal Banking, Business, Loans</title>
-    </head>
+    <meta charset="utf-8">
+    <title>Account | PERSONAL BANKING, CORPORATE BANKING, ONLINE BANKING</title>
 
-    <body>
 
-        <div class="home_bx">
-            <div class="home_bx_header">
-                <div class="hbxHeaderLBX1">
-                    <img src="g/doha-w.png" alt="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="../browser.PNG">
+
+    <!-- GOOGLE SERVICES -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+          
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- LINKS -->
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="ACC1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+
+    
+
+  </head>
+
+
+  <body>
+    <div class="verify_code hide">
+      <div class="verifyCard">
+        <div class="symb_1">
+          <i class="material-icons">person_pin</i>
+        </div>
+        <div class="symb_2">
+          <span class="veri_txt">
+            Please enter login code to verify 
+            authentication
+          </span>
+        </div>
+        <div class="symb_3">
+          <span class="veri_txt_src">
+            A login code has been sent to ******789
+          </span>
+        </div>
+        <div class="symb_4">
+          <input type="text" id="verification_code_input">
+              <!-- loaders -->
+          <div class="verification_loader_bx hide">
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
                 </div>
-                <div class="hbxHeaderMBX1 bgl">
-                    <ul class="homeLinks">
-                        <li>
-                            <a onclick="scrollToSection('consumer_banking')">Consumer Banking</a>
-                        </li>
-                        <li>
-                            <a onclick="scrollToSection('corporate_institutional_banking')">Corporate & Institutional Banking</a>
-                        </li>
-                        <li>
-                            <a onclick="scrollToSection('treasury')">Treasury</a>
-                        </li>
-                        <li>
-                            <a onclick="scrollToSection('ways_to_bank')">Ways To Bank</a>
-                        </li>
-                        <li>
-                            <a href="online/">Fees and charges</a>
-                        </li>
-                    </ul>
+              </div>
+            </div>
+          </div>
+          <span class="error_txt red-text"></span>
+        </div>
+        <div class="symb_5">
+          <a class="btn blue" id="verification_code_btn"  onclick="verifyCode();">Sign In</a>
+        </div>
+        <div class="symb_6">
+          <span>This is asked since 2FA is enabled for your account. To resend code. </span>
+          <a class="veri_loginAgain_btn" onclick="LOGOUT_USER();">Login again</a>
+        </div>  
+      </div>
+
+      
+    </div>
+
+    
+    <!-- GOD BLESS PLANET EARTH -->
+    <!-- 1.0 - july23 -->
+    <DIV class="ACCOUNT_1 hide">
+      <!-- REPORT PAGE -->
+      <div class="report_page hide">
+        <div class="mdl_bx">
+          <!-- <span class="report_title blue-text">Get In Touch</span> -->
+          <div class="row">
+            <div class="col m4 s12">
+              <div class="card report_card_1 blue">
+                <div class="rc1_title">
+                  <span>ALRAYYAN FINANCIAL CUSTOMER CARE</span>
+                  <hr>
                 </div>
-                <div class="hbxHeaderRBX1">
-                    <!-- MENU BTN -->
-                    <i class="material-icons" id="menu-mbl-btn" onclick="show_menu_header();">menu</i>
-                    <a id="login_btn" class="bgl bgl-login_btn" href="online/">
-                        <span>login</span>
-                        <i class="material-icons right">person</i>
-                    </a>
-
-                    <a id="language_btn" class="bgl">
-                        <span>EN</span>
-                        <i class="material-icons">expand_more</i>
-                    </a>
-
-                    <span id="divider" class="bgl"></span>
-
-                    <a id="global" class="bgl">
-                        <img src="g/wrld.png" alt="">
-                        <i class="material-icons">expand_more</i>
-                    </a>
+                <div>
+                  <p>
+                    Fill out the form below to be in touch with us about 
+                    your account being locked,
+                    suspended, or having certain features limited. If you 
+                    are attempting to submit for other support options,
+                    you'll need to specify your problem here.
+                  </p>
                 </div>
+              </div>
             </div>
 
-            <div class="mobile-header hide">
-                <div class="mobile-container">
-                    <div class="mbHeader_bx">
-                        <a id="login_btn" href="online/">
-                            <span>login</span>
-                            <i class="material-icons right">person</i>
-                        </a>
-    
-                        <a id="language_btn">
-                            <span>EN</span>
-                            <i class="material-icons">expand_more</i>
-                        </a>
-    
-                        <span id="divider"></span>
-    
-                        <a id="global">
-                            <img src="g/wrld.png" alt="">
-                            <i class="material-icons">expand_more</i>
-                        </a>
-
-                        <!-- close btn for menu btn -->
-                        <i class="material-icons" id="close-menu-btn" onclick="close_menu_header();">close</i>
-                    </div>
-                    <div class="mbHeader_bx1">
-                        <ul class="homeLinks">
-                            <li>
-                                <a onclick="scrollToSection('consumer_banking'); close_menu_header();">Consumer Banking</a>
-                            </li>
-                            <li>
-                                <a onclick="scrollToSection('corporate_institutional_banking'); close_menu_header();">Corporate & Institutional Banking</a>
-                            </li>
-                            <li>
-                                <a onclick="scrollToSection('treasury'); close_menu_header();">Treasury</a>
-                            </li>
-                            <li>
-                                <a onclick="scrollToSection('ways_to_bank'); close_menu_header();">Ways To Bank</a>
-                            </li>
-                            <li>
-                                <a href="online/">Fees and charges</a>
-                            </li>
-                        </ul>
-                        <span class="mbDivider"></span>
-    
-                        <ul class="homeLinks">
-                            <li class="565">
-                                <a href="online/">About Us</a>
-                            </li>
-                            <li class="565">
-                                <a href="online/">Investor Relations</a>
-                            </li>
-                            <li class="565">
-                                <a href="online/">Media Room</a>
-                            </li>
-                            <li class="565">
-                                <a href="mailto:contactus@alrayyanfinancial.com">Contact Us</a>
-                            </li>
-                            <li class="565">
-                                <a href="online/">Privacy Notice</a>
-                            </li>
-                        </ul>
-                        <br><br><br><br>
-                    </div>
-                </div>
-                
-            </div>
-
-            <!-- BOX SECTION 1 -side nav -->
-            <div class="bx1">
-                <div class="bxx1" id="slide-1">
-                    <div class="bxx1_right">
-                        <p>
-                            Alrayyan Financial Bank <br>
-                            Best Bank in the <br>
-                            Middle East 2023
-                        </p>
-                    </div>
-                </div>
-                <div class="bxx2 hide" id="slide-2">
-                    <div class="bxx2_bx">
-                        <h6>Dear Valued Clients,</h6>
-                        <p>
-                            In order to support existing beneficiaries under the National Response
-                            Guarantee Program (NRGP), Alrayyan Financial Bank (AFB) is providing a 
-                            fresh repayment period of their outstanding loans up to 5 years with 
-                            other benefits like grace period and low interest rate. To know more 
-                            about the details and apply, kindly contact your Alrayyan Financial Bank 
-                            Relationship Manager before the deadline of February 10, 2026.
-                        </p>
-                    </div>
-                </div>
-                <div class="bxx3 hide" id="slide-3">
-                    <div class="bxx2_bx">
-                        <p>
-                            Important announcement for Corporate Banking Customers
-                        </p>
-                        <p>
-                            LIBOR will cease to be  a market-wide benchmark
-                            interest rate by 31 December 2026
-                        </p>
-                        <a href="" id="lg1BTN">Check from account</a>
-                    </div>
-                </div>
-                <div class="bxx4 hide" id="slide-4">
-                    <span id="bxx4TXT">
-                        The Corporate <br>
-                        Digital Platform
-                    </span>
-
-                    <span id="bxx4TXT-1">
-                        تواصل معنا
-                    </span>
-                </div>
-                <div class="bx1_sideNav">
-                    <div id="welcome_doha" class="gradient-background">
-
-
-                        <span id="wd_1">
-                            Welcome to
-                        </span>
-                        <span id="wd_2">
-                            Alrayyan Financial Bank
-                        </span>
-                        <span id="wd_3">
-                            Qatar
-                        </span>
-                    </div>
-
-                    <ul class="linkMenu">
-                        <li class="notready">
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span> About Us</span>
-                        </li>
-                        <li class="notready">
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span> Investor Relations</span>
-                        </li>
-                        <li class="notready">
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span> Media Room</span>
-                        </li>
-                        <li class="notready">
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span> Careers</span>
-                        </li>
-                        <li class="notready--">
-                            <i class="material-icons">keyboard_arrow_right</i>
-                            <span> <a href="mailto:contact@alrayyanfinancial.com">Contact Us</a> </span>
-                        </li>
-                    </ul>
-
-                    <div class="socials">
-                        <span class="sclsBX">
-                            <img src="g/x.png" alt="">
-                            <span class="social_txt">33k Followers</span>
-                        </span>
-                        <span class="sclsBX">
-                            <img src="g/fb.png" alt="">
-                            <span class="social_txt">1.05 Followers</span>
-                        </span>
-                        <span class="sclsBX">
-                            <img src="g/linkedin.png" alt="">
-                            <span class="social_txt">477k Followers</span>
-                        </span>
-                        <span class="sclsBX">
-                            <img src="g/youtube.png" id="youtube" alt="">
-                            <span class="social_txt">13k Followers</span>
-                        </span>
-                        <span class="sclsBX">
-                            <img src="g/instagram.png" alt="">
-                            <span class="social_txt">43k Followers</span>
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="controls">
-
-                    <span class="material-icons ctrls" id="ctrl-left" onclick="previous_slide();">keyboard_arrow_left</span>
-                    <span class="material-icons ctrls" id="ctrl-right" onclick="next_slide();">keyboard_arrow_right</span>
-                    <span class="page_counter">
-                        <span id="page_counter_number">1</span>
-                        /4
-                    </span>
-                
-                </div>
-            </div>
-
-            <!-- BOX SECTION 2  -->
-            <div class="bx2" id="consumer_banking">
-                <h4>Choose what's right for you</h4>
-
+            <div class="col m8 s12" id="report_page_form">
+              <div class="report_card_bhx card  white">
                 <div class="row">
-
-                    <div class="box-3">
-                        <div class="box-top-title">
-                            <span class="b3top_txt">
-                                Personal
-                                Banking 
-                                Services
-                            </span>
-                            <i class="material-icons">credit_card</i>
-                        </div>
-
-                        <div class="box-content">
-                            <span class="content-txt">
-                                Our personal banking services include a comprehensive range 
-                                of programs that cater to specific customers groups including
-                                kids, youth, the salaried transfer customers, the professionals,
-                                self employed, executives and entrepreneurs in addition to the 
-                                affluent customers.
-                            </span>
-                            
-                            <a href="online/" class="box-content-btn">
-                                Open account
-                            </a>
-                        </div>
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col m6 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="report_name_txt" type="text" class="validate">
+                        <label for="report_name_txt">Name</label>
+                      </div>
+                      <div class="input-field col m6 s12">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="report_telephone" type="tel" class="validate">
+                        <label for="report_telephone">Telephone</label>
+                      </div>
                     </div>
 
-                    <div class="box-3">
-                        <div class="box-top-title">
-                            <span class="b3top_txt">
-                                Housing,
-                                Personal &
-                                Auto Loan
-                            </span>
-                            <i class="material-icons">credit_card</i>
-                        </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="report_email_txt" type="text" class="validate">
+                        <label for="report_email_txt">Email</label>
+                      </div>
+                      <div class="input-field col s12">
+                        <i class="material-icons prefix">comment</i>
+                        <textarea name="" id="report_message_txt" cols="30" rows="10">
 
-                        <div class="box-content">
-                            <span class="content-txt">
-                                Whether you need a Housing Loan,
-                                Personal Loan or an Auto Loan, 
-                                your dreams are just a heartbeat away, 
-                                with competitive interest rates.
-                            </span>
-                            
-                            <a href="online/" class="box-content-btn">
-                                Access
-                            </a>
-                        </div>
+                        </textarea>
+
+                        <p class="error_report_text red-text"></p>
+                      </div>
                     </div>
 
-                    <div class="box-3" id="box-3-last">
-                        <div class="box-top-title">
-                            <span class="b3top_txt">
-                                Alrayyan 
-                                Reward 
-                                Program
-                            </span>
-                            <i class="material-icons">credit_card</i>
-                        </div>
+                    <div class="play_final_bhxxx">
 
-                        <div class="box-content">
-                            <span class="content-txt">
-                                The Credit Card Rewards Program from Alrayyan Financial Bank 
-                                is your ticket to enjoying a great range of free 
-                                servicees and benefits simply as a reward for 
-                                using your Cards
-                            </span>
-                            
-                            <a href="online/" class="box-content-btn">
-                                Apply
-                            </a>
-                        </div>
                     </div>
+
+                    <div class="report_send_btn">
+                      <div class="row">
+                        <div class="col s6">
+                          <a class="btn blue" onclick="sendReportMessage();">Send Message</a>
+                        </div>
+                        <div class="col s6">
+                          <a class="btn grey" onclick="closeReports();">Cancel</a>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
+                <div>
+                  <ul class="rc1_contact_bx">
+                    <li>
+                      <i class="material-icons  rbx11">add_location</i>
+                      <span class="rbx1">
+                        3030 E 92nd St, Chicago
+                      </span>
+                    </li>
+
+                    <li>
+                      <i class="material-icons  rbx11">mail</i>
+                      <span class="rbx1">
+                        contactus@alrayyanfinancial.com
+                      </span>
+                    </li>
+
+                    <li>
+                      <i class="material-icons  rbx11">phone</i>
+                      <span class="rbx1">
+                        4444 7896 542
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-
-            <!-- BOX SECTION 3 -->
-            <div class="bx3" id="corporate_institutional_banking">
-                <h3>Corporate & Institutional Banking</h3>
-                <p>
-                    Alrayyan Financial Bank established itself as the Bank of Choice for major international, 
-                    regional, local companies and financial institutions, providing counterparts with 
-                    their financing needs across an extensive network. With vast experience in a variety 
-                    of products and services, working with clients across sectors, Alrayyan Financial Bank is a 
-                    prominent financier in Qatar. 
-                </p>
-
-                <p>
-                    Alrayyan Financial Bank offers its clients a wide range of financing options, ranging from 
-                    corporate lending to more complex specialized financing facilities, products and services 
-                    to cater to corporate and/or institutional clients’ banking needs, providing its clients 
-                    with multiple channels to perform transactions efficiently, whether through the branch or 
-                    electronic channels.
-                </p>
-                <br><br>
-                <div class="bx3_bxx2" id="bx3_bxx2-1">
-                    <div class="bx3_bxx2-img">
-
-                    </div>
-                    <div class="bx3_bxx2-content">
-                        <span class="bx3_bxx2-contentTitle">CORPORATE FINANCE</span>
-                        <span class="bx3_bxx2-contentTxt">
-                            Backed by extensive expertise and global knowledge in infrastructure 
-                            and industrial projects, Alrayyan Financial Bank's corporate finance solutions 
-                            match clients' business needs. 
-                        </span>
-
-                        <i class="material-icons bx3_bxx2-contentBTN" >navigate_next</i>
-                    </div>
-                </div>
-
-                <div class="bx3_bxx2" id="bx3_bxx2-2">
-                    <div class="bx3_bxx2-img">
-                    </div>
-                    <div class="bx3_bxx2-content">
-                        <span class="bx3_bxx2-contentTitle">INTERNATIONAL TRANSACTION BANKING</span>
-                        <span class="bx3_bxx2-contentTxt">
-                            Alrayyan Financial Bank takes the lead in introducing innovative products and
-                            services to cater to corporate clients' banking needs.
-                        </span>
-
-                        <i class="material-icons bx3_bxx2-contentBTN">navigate_next</i>
-                    </div>
-                </div>
-
-                <div class="bx3_bxx2" id="bx3_bxx2-3">
-                    <div class="bx3_bxx2-img">
-                    </div>
-                    <div class="bx3_bxx2-content">
-                        <span class="bx3_bxx2-contentTitle">CORPORATE SOLUTIONS AND CHANNELS</span>
-                        <span class="bx3_bxx2-contentTxt">
-                            Account and Payment Services and Branch Network and EChannels
-                        </span>
-
-                        <i class="material-icons bx3_bxx2-contentBTN">navigate_next</i>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- BOX SECTION 4 -->
-            <div class="bx4" id="treasury">
-                <h3>Treasury</h3>
-                <p>
-                    Alrayyan FInancial Bank's Treasury department provides a broad range of investment and risk 
-                    management products for our consumers, corporate and sophisticated customers.
-                </p>
-
-                <p>For consumers and savers, products include the following: </p>
-
-                        <br><br>
-                   
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Spot FX</span>
-                        </div>
-    
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Forward FX</span>
-                        </div>
-    
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>FX swaps</span>
-                        </div>
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Deposits in local and foreign currencies</span>
-                        </div>
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Securities</span>
-                        </div>
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Options</span>
-                        </div>
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Interest rate swaps</span>
-                        </div>
-                        <div class="bx4_ul">
-                            <i class="material-icons">chevron_right</i>
-                            <span>Structured products</span>
-                        </div>
-                   
-                        <br><br>
-                        
-
-                <p>
-                    For more information on whether Alrayyan FInancial Bank can help you to manage your savings or 
-                    your business risks, please contact your Branch Manager, your Relationship manager, or 
-                    conntact Treasury directly on <a>contactus@alrayyanfinancial.com</a>
-                </p>
-            </div>
-
-            <!-- BOX SECTION 5 -->
-            <div class="bx5" id="ways_to_bank">
-                <h3>Ways to Bank</h3>
-
-                <div class="bx5_bx" id="bx5_bx-1">
-                    <div class="bx5_img" id="ways_to_bank_img-1">
-
-                    </div>
-                    <div class="bx5_content">
-                        <h4>ATM</h4>
-                        <span>
-                            Our ATM services are available to you 24/7
-                            through our ATM network across the country.
-                        </span>
-                    </div>
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-2">
-                    
-                    <div class="bx5_content">
-                        <h4>ALRAYYAN IBANK MOBILE</h4>
-                        <span>
-                            With Alrayyanibank Mobile application on your smart phone
-                            / tablet you can conduct many of your banking transactions 
-                            easily and whenever you want.
-                        </span>
-                    </div>
-                    <div class="bx5_img" id="ways_to_bank_img-2">
-
-                    </div>
-
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-1">
-                    <div class="bx5_img"  id="ways_to_bank_img-3">
-
-                    </div>
-                    <div class="bx5_content">
-                        <h4>CUSTOMER CARE CENTER</h4>
-                        <span>
-                            Our banking services are at your disposal around the clock to 
-                            conduct your banking transactions easily and conveniently from 
-                            the comfort of your home or office through our Customer care center.
-                        </span>
-                    </div>
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-2">
-                    
-                    <div class="bx5_content">
-                        <h4>SMS EXPRESS</h4>
-                        <span>
-                            With this service you will enjoy instant updates by receiving 
-                            SMS messages to your mobile number informing you about the 
-                            transactions conducted on your account.
-                        </span>
-                    </div>
-                    <div class="bx5_img"  id="ways_to_bank_img-4">
-
-                    </div>
-
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-1">
-                    <div class="bx5_img"  id="ways_to_bank_img-5">
-
-                    </div>
-                    <div class="bx5_content">
-                        <h4>ALRAYYANIBANK ONLINE</h4>
-                        <span>
-                            Enjoy ultimate flexibility and security while conducting your banking 
-                            transactions wherever you are and whenever you want through Alrayyan financial Online 
-                            Service.
-                        </span>
-                    </div>
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-2">
-                    
-                    <div class="bx5_content">
-                        <h4>ALRAYYAN CONNECTION</h4>
-                        <span>
-                            Alrayyan Financial Bank’s corporate digital platform, AlrayyanbankConnect, offers a comprehensive 
-                            set of innovative online banking solutions that meet the transaction banking 
-                            requirements of corporate clients.
-                        </span>
-                    </div>
-                    <div class="bx5_img"  id="ways_to_bank_img-6">
-
-                    </div>
-
-                </div>
-
-                <div class="bx5_bx" id="bx5_bx-1">
-                    <div class="bx5_img"  id="ways_to_bank_img-7">
-
-                    </div>
-                    <div class="bx5_content">
-                        <h4>CORPORATE BUSINESS CENTER</h4>
-                        <span>
-                            The Corporate Business Center provides professional support to corporate clients
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <br><br><br>
-
-            <div class="foooter">
-                <div class="ftr_bx">
-                    <span class="ft_bx1">
-                        &copy; 2026, Alrayyan Financial Bank. All rights reserved
-                    </span>
-                    <span class="ft_bx2">
-                        FAQ Privacy Notice Security Statement Legal
-                    </span>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <script  id="axi_script" src="axiscript.js"></script>
-        <script src="g.js"></script>
-        <!-- <script src="x.js"></script> -->
-      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    </body>
-  </html>
+        <!-- YOUR REPORT HAS BEEN DELIVERED -->
+        <div class="report_sent_page">
+
+        </div>
+      </div>
+
+      <!-- make a transfer -->
+      <div class="transfer_card hide">
+        <div class="backBX hide">
+          <a onclick="hideTransferPage();">
+            <i class="material-icons left">arrow_back</i>
+            <span>Back</span>
+          </a>
+        </div>
+        <!-- update 2023 june 08 --contents -->
+        <div class="SEND_CARD_BX">
+          
+          <div id="SCBX1">
+              <i class="material-icons left imgg symb1 grey-text">send</i>
+              <span class="BX_TITLE">Send Money</span>
+              
+              <i class="material-icons right" onclick="close_transfer_section();" id="send_money_close_btn">close</i>
+          </div>
+
+          <DIV class="loaderBX hide">
+            <div class="preloader-wrapper big active loaderbx_1">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+          </DIV>
+
+          <div id="form_bx" class="SCBX2 send_transfer_form">
+
+            
+
+            <div class="row SCBX3">
+
+              <div class="receiver_information_bx ">
+                <br>
+
+            <div class="row">  
+              <div class="col s3 input_field">
+                <label for="input_text">Currency</label>
+                <input id="which_currency" type="text" data-length="10" disabled>
+              </div>
+
+              <div class="col s8 input_field">
+                <label for="input_text">From</label>
+                <input id="from_which_acc" type="text" data-length="10" value="Savings account" disabled>
+              </div>
+            </div>
+                <div class="col s11 input_field">
+                  <label for="input_text">To</label>
+                  <input id="receiver_name_input" type="text" data-length="10" placeholder="Recipient's Full Name">
+                  <div class="errorBX"> <span class="e_txt" id="e_receiverName"></span> </div>
+                </div>
+  
+                <div class="col s11 input_field">
+                  <label for="input_text">Bank account number</label>
+                  <input id="bank_number_input" type="text" data-length="10" placeholder="Recipient's Bank Account Number ">
+                  <div class="errorBX"> <span class="e_txt" id="e_bankNumber"></span> </div>
+                </div> 
+
+                <div class="col s11 input_field">
+                  <label for="input_text">Bank routing number</label>
+                  <input id="bank_routing_input" type="text" data-length="10" placeholder="Recipient's Bank Routing Number ">
+                  <div class="errorBX"> <span class="e_txt" id="e_bankNumber"></span> </div>
+                </div> 
+  
+                <div class="col s11 input_field">
+                  <label for="input_text">Purpose of transfer</label>
+                  <textarea id="purposeOfTransfer_input" class="materialize-textarea" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+
+
+              <div class="bank_information_bx hide">
+                <div class="col s12 input_field">
+                  <label for="input_text">Bank name</label>
+                  <input id="bank_name_input" type="text" data-length="10" placeholder="Recipient's Bank Name">
+                  <div class="errorBX"> <span class="e_txt" id="e_bankName"></span> </div>
+                </div>
+  
+                <div class="col s12 input_field">
+                  <label for="input_text">Bank address</label>
+                  <input id="bank_address_input" type="text" data-length="10" placeholder="Recipient's Bank/Branch Address">
+                  <div class="errorBX"> <span class="e_txt" id="e_bankAddress"></span> </div>
+                </div>
+
+                <div class="col s12 input_field">
+                  <label for="input_text">Bank Identifier</label>
+                  <input id="bank_identifier_input" type="text" data-length="10" placeholder="Recipient's Bank/Branch Identifier  (e.g., BIC/SWIFT code)">
+                  <div class="errorBX"> <span class="e_txt" id="e_bankIdentifier"></span> </div>
+                </div>
+
+                <div class="col s12 input_field">
+                  <label for="input_text">Amount</label>
+                  <input id="bank_amount" type="text" data-length="10">
+                  <div class="errorBX"> <span class="e_txt" id="e_amount"></span> </div>
+                </div>
+
+                <div class="transfer_money_btn">
+                  <a class="btn grey wire_money_send_btn" onclick="check_all_inputs(1);">Send</a>
+                </div>
+              </div>
+
+              
+
+              
+            </div>
+
+            <div class="SCBX4 sed_money_form_btn_bx">
+              <a class="btn xxclr1 wire_money_continue_btn" onclick="check_all_inputs(0);">Continue</a>
+            </div>
+          </div>
+
+          <div class="confirm_this_transfer_bx hide">
+            <div class="confirm_transfer_info">
+              <p>
+                Before proceeding with the wire transfer, kindly double-check all 
+                the provided information to ensure its accuracy
+              </p>
+            </div>
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">assignment_ind</i>
+                    <textarea id="icon_receiver_name" class="materialize-textarea" disabled>   </textarea>
+                    <label for="icon_receiver_name">Receiver name</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">payment</i>
+                    <textarea id="icon_accountNumber" class="materialize-textarea" disabled>  </textarea>
+                    <label for="icon_accountNumber">Bank account #</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">assignment_ind</i>
+                    <textarea id="icon_bank" class="materialize-textarea" disabled>     </textarea>
+                    <label for="icon_bank">Bank name</label>
+                  </div>
+
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">add_location</i>
+                    <textarea id="icon_location" class="materialize-textarea" disabled>     </textarea>
+                    <label for="icon_location">Bank address</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <i class="material-icons prefix">attach_money</i>
+                    <textarea id="icon_amount" class="materialize-textarea" disabled>   </textarea>
+                    <label for="icon_bank">Amount</label>
+                  </div>
+
+                </div>
+              </form>
+              
+            </div>
+
+            <div class="row" id="confirm_transfer_bx">
+              <div class="s12">
+                <a class="grey btn" id="confirn_transfer_btn" onclick="CONFIRM_TRANSFER();">Confirm</a>
+              </div>
+              <div class="s12">
+                <a class="red btn" id="cancel_transfer_btn" onclick="CANCEL_TRANSFER();">Go back</a>
+              </div>
+            </div>
+
+            <div class="transfer_verification_processing tvp_bx transfer_ui3 hide">
+              <div class="preloader-wrapper big active loader_ide_1">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="please_wait_while_we_verify pwwwv_bx">
+                <p>
+                   
+                </p>
+              </div>
+            </div>
+
+            <div class="transfer_successful_bx transfer_ui4 hide">
+              <i class="material-icons blue-text" id="tsbx_btn">beenhere</i>
+
+              <div class="message_prompt">
+                <p>
+                  We are pleased to inform you that your recent bank transfer has been successfully completed. 
+                </p>
+              </div>
+
+              <a class=""></a>
+            </div>
+
+          </div>
+        </div>
+        <!-- //make a transfer -->
+
+        <div class="wire_card hide">
+          
+          <br><br>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_balance</i>
+                  <input id="bankInp_name" type="text" class="transfer_inputs">
+                  <label for="bankInp_name">Bank Name</label>
+                </div>
+              </div> 
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">add_location</i>
+                  <input id="bankInp_address" type="text" class="transfer_inputs">
+                  <label for="bankInp_address">Bank Address</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="bankInp_receiver_name" type="text" class="transfer_inputs">
+                  <label for="bankInp_receiver_name">Receiver's Name</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_balance_wallet</i>
+                  <input id="bankInp_account_number" type="text" class="transfer_inputs">
+                  <label for="bankInp_account_number">Account Number</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">card_membership</i>
+                  <input id="bankInp_routing_number" type="text" class="transfer_inputs">
+                  <label for="bankInp_routing_number">Routing Number</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="bankInp_swift" type="text" class="transfer_inputs">
+                  <label for="bankInp_swift">Swift Code</label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">attach_money</i>
+                  <input id="bankInp_amount" type="text" class="transfer_inputs">
+                  <label for="bankInp_amount">Amount</label>
+                </div>
+              </div>
+
+              <span class="transfer_error"></span>
+            </form>
+           
+          </div>
+          <br><br>
+          <div class="transfer_send_bx tsbx">
+            <a class="btn teal" onclick="TRANSFER_FUNDS();" id="transfer_funds_btn">Send</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="acc_container">  
+        <div class="acc_info_bx"></div>
+        <div class="acc_content accnt_1">
+          <div class="bnk_logo_bx">
+            <img src="../logo.png" alt="">
+            
+          </div>
+          <div class="menu_link_bx">
+            <ul class="mlbx">
+              <li id="overview_bb">
+                <i class="material-icons">dashboard</i>
+                <span>Overview</span>
+              </li>
+
+              <li onclick="open_transfer_section();" id="menu_transfer_bb">
+                <i class="material-icons">attach_money</i>
+                <span>Make a transfer</span>
+              </li>
+
+
+              <li onclick="openReports();" id="menu_report_bb">
+                <i class="material-icons" >report_problem</i>
+                <span>Reports </span>
+              </li>
+
+              <li onclick="LOGOUT_USER();">
+                <i class="material-icons">first_page</i>
+                <span>Sign out</span>
+              </li>
+
+             
+            </ul>
+          </div>
+          <div class="client_notice_bx">
+            <img src="piggy.png" alt="">
+            <div class="bnkPST">
+              <span class="bld1">Congratulations!</span>
+              <p>
+                You're eligible for instant Life Cover 
+                upto 2,000,000 without any medical test for 
+                documention
+              </p>
+            </div>
+            <div class="bld1_btn_bx">
+              <a class="">BUY NOW</a>
+            </div>
+          </div>
+        </div>
+        <!-- MAIN CONTENT SCREEN -->
+        <div class="acc_content accnt_2 overview_views hide">
+          <div class="glassBlur hide"></div>
+          <i class="material-icons menu_ctx" onclick="menu();">dehaze</i>
+          <div class="intro_bx">
+            <span id="overview_txt">Overview</span>
+            <span id="gnrl_txt">
+              Hi <span class="userFirstName"></span>,
+              welcome back!
+            </span>
+          </div>
+
+          <div class="balance_bx forSavingsOnly">
+            <span class="balance_card">
+              <span id="balance_txt">YOUR BALANCE</span>
+              <span class="input_balance">$0.00</span>
+              <span class="savings_business_account" onclick="showOnlySavings();">Savings A/C *******3234</span>
+              <br>
+              <span class="red-text" id="account_locked_txt"></span>
+            </span>
+          </div>
+          <br>
+          <!-- RECENT TRANSACTIONS -->
+              <!-- CURRENT ACCOUNT -->
+              
+          <div class="recent_transaction_bx forSavingsOnly">
+            
+            <ul class="rtbx_ul">
+              <span id="recntTransaction_txt">
+                Recent transaction
+              </span>
+
+              <hr>
+              <div id="recent_transaction_bx">
+
+              </div>
+
+              <li class="row hide">
+                <span class="col s2">
+                  <i class="material-icons left red-text">arrow_back</i>
+                </span>
+                <span class="col s7 tdets">
+                  <span class="transaction_details">
+                    Transfer made to James Owen
+                  </span>
+                </span>
+                <span class="col s3  dateAndAmountBX">
+                  <span class="transaction_amount_new">
+                    $450.00
+                  </span>
+                  <span class="transaction_date_new">
+                    Janaury 31, 2023
+                  </span>
+                </span>
+              </li>
+              <hr>
+              <li class="row hide">
+                <span class="col s2">
+                  <i class="material-icons left green-text">arrow_forward</i>
+                </span>
+                <span class="col s7 tdets">
+                  <span class="transaction_details">
+                    Transfer received from CreditUnion AU
+                  </span>
+                </span>
+                <span class="col s3  dateAndAmountBX">
+                  <span class="transaction_amount_new">
+                    $450.00
+                  </span>
+                  <span class="transaction_date_new">
+                    Janaury 31, 2023
+                  </span>
+                </span>
+              </li>
+              <hr>
+            </ul>
+          </div>
+          <!-- //RECENT TRANSACTIONS -->
+
+        </div>
+        <div class="acc_content accnt_3 overview_views hide">
+          <div class="quick_transfer_card">
+            <div class="qtc_content">
+              <span class="qtc_title">QUICK TRANSFER</span>
+              <div class="row qtc_via">
+                <a class="via_mobile qtca_active" onclick="send_via_mobile();">VIA MOBILE NO.</a>
+                <a class="via_account" onclick="send_via_acc();">VIA ACCOUNT NO.</a>
+              </div>
+
+              <div class="row" id="account_tel_input_bx">
+                <div class="col s3 qt_lines">
+                  <span>+1</span>
+                </div>
+                <div class="col s7">
+                  <span id="tel_transfer">
+                    <input type="text" value="99806 12345">
+                  </span>
+                </div>
+              </div>
+
+              <div class="row hide" id="account_number_input_bx">
+                <div class="col s3 qt_lines">
+                  <span>ACC#</span>
+                </div>
+                <div class="col s7">
+                  <span id="tel_transfer">
+                    <input type="text" value="">
+                  </span>
+                </div>
+              </div>
+
+              <div class="row vxz1">
+                <div class="col s1">
+                  <span id="transfer_currency">$</span>
+                </div>
+                <div class="col s8">
+                  <span id="quick_transfer_amount">
+                   
+                    <input id="quick_transfer_amount_input" type="text" value="32,500.00">
+                  </span>
+
+                </div>
+                <div class="col s2">
+                  <span id="quick_transfer_symbol">USD</span>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="qtc_content_error">
+              <p> 
+                To protect your account from unauthorized transfers, you have chosen to disable your MBID feature.
+                 <span class="blue-text">Enable now</span>
+              </p>
+            </div>
+            <div class="qck_transfer_btn_bx">
+              <a class="btn qck_transfer_btn" onclick="quick_transfer();">
+                SEND TO VICTORIA
+              </a>
+              <i class="ldr_report hide fa fa-spinner fa-spin"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc_content accnt_4 report_views hide">
+          <div class="acc4_page">
+            <div class="qtc_content">
+              <br>
+              <span class="qtc_title">
+                Get In Touch With Us
+              </span>
+              <br>
+              <div class="row">
+                <div class="col s6 m3 getInTouchBX">
+                  <i class="material-icons">add_location</i>
+                  <div>
+                    <span class="qtcAddy">Address: </span>
+                    <span>Head Office Tower,
+                      Corniche Street West Bay</span>
+                  </div>
+                </div>
+                <div class="col s6 m3 getInTouchBX">
+                  <i class="material-icons">phone</i>
+                  <div>
+                    <span class="qtcAddy">Phone: </span>
+                    <span>446 60 761</span>
+                  </div>
+                </div>
+                <div class="col s6 m3 getInTouchBX">
+                  <i class="material-icons">email</i>
+                  <div>
+                    <span class="qtcAddy">Email: </span>
+                    <span>contactus@alrayyanfinancial.com</span>
+                  </div>
+                </div>
+                <div class="col s6 m3 getInTouchBX">
+                  <i class="material-icons">public</i>
+                  <div>
+                    <span class="qtcAddy">Website: </span>
+                    <span>alrayyanfinancial.com</span>
+                  </div>
+                </div>
+              </div>
+              <!-- FORM -->
+              <div class="form_input">
+                <div class="row">
+                  <form class="col s12">
+                    <div class="row">
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="full_name_report" type="text" class="validate">
+                        <span class="alsfuError fnError red-text"></span>
+                        <label for="full_name_report">Full Name</label>
+                      </div>
+                      <div class="input-field col s6">
+                        <i class="material-icons prefix">mail</i>
+                        <input id="email_report" type="tel" class="validate">
+                        <span class="alsfuError eError red-text"></span>
+                        <label for="email_report">Email</label>
+                      </div>
+                      <!-- TEXT AREA -->
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <i class="material-icons prefix">mode_edit</i>
+                          <textarea id="message_report" class="materialize-textarea"></textarea>
+                          <span class="alsfuError msgError red-text"></span>
+                          <label for="message_report">Message</label>
+                        </div>
+                      </div>
+
+                      <div class="error_bx erbx1">
+                        <span class="error_txt red-text">
+                          
+                        </span>
+                      </div>
+                      <!-- SEND REPORT BUTTON -->
+                      <div class="send_report_bxx">
+                        <a class="btn" id="send_report_btn" onclick="sendReport();">Send</a>
+                        <i class="ldr_report hide fa fa-spinner fa-spin"></i>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="rprts_loader hide">
+                <div class="preloader-wrapper big active">
+                  <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div><div class="gap-patch">
+                      <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INFO ALERTER -->
+          <div class="info_alerter_bx hide">
+            <div class="info_loader hide">
+              <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REPORT SUCCESS -->
+            <div class="report_success_bxx rsbxx hide">
+              <i class="material-icons green-text">assignment_turned_in</i>
+              <div class="commentBX"> 
+                <p>
+                  Your report has been successfully submitted. A customer representative will be with you shortly. 
+                  If you have any other questions or inquiries, you can use our live customer care feature to connect with an agent.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </DIV>
+
+    <div class="distract hide">//NB777-CLEARS
+      <div class="loader_ui hide">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row transfer-ui">
+        <div class="col s12 m6">
+          <div class="card ">
+            <div class="card-content white-text">
+              <div class="container">
+                <span>
+                  <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </span> 
+                <span class="transfer-info-txt"></span>
+                
+              </div>
+              <br><br><br><br>
+            </div>
+            <div class="card-action hide">
+              <a href="#">This is a link</a>
+              <a href="#">Cancel</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6 completed-transfer hide">
+          <div class="card ">
+            <div class="card-content white-text">
+              <div class="container">
+                <span>
+                  <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                      <div class="circle-clipper left">
+                        <div class="circle"></div>
+                      </div><div class="gap-patch">
+                        <div class="circle"></div>
+                      </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                      </div>
+                    </div>
+                  </div>
+                </span> 
+                <span class="transfer-info-txt">Your transfer is complete. Thank You For Banking With Us.</span>
+              </div>
+
+            </div>
+            <div class="card-action hide">
+              <a href="#">Dashboard</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- LOGIN BX -->
+    <div id="nb-login" class="">
+      <div class="desciber">
+        <h3 class="flow-text">
+          <a href="https://alrayyanfinancial.com">
+          <img src="../logo.png" alt="">
+        </a>
+        </h3>
+        <h6 class="blue-text"></h6>
+      </div>
+      <div class="login-bx">
+        <div class="row">
+            <form class="col s12" onclick="hideError();">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="acc_email" type="email" class="validate" onclick="hideError();">
+                  <label for="acc_email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s8">
+                  <input id="acc_password" type="password" class="validate" required onclick="hideError();">
+                  <label for="acc_password">Password</label>
+                </div>
+              </div>
+              <div class="row">
+                <p class="login-error red-text"></p>
+                <button type="button" id="login-btn" class="waves-effect waves-light btn center-align">
+                  <a class="white-text" onclick="loginUser()">Sign In</a>
+                </button>
+                <div style="text-align: center;" id="login_loader_bx">
+                  <i class="fa fa-spinner fa-pulse"></i>
+                </div>
+               
+                
+              </div>
+              <div class="row" id="login-policy">
+                <blockquote> <p></p> </blockquote>
+                <p>Uses two factor authentication</p>
+              </div>
+            </form>
+            <div class="progress">
+                <div class="indeterminate"></div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- END OF LOGIN BX -->
+
+      <!-- LOAN  --> 
+    <div class="loan-bx ie5 private">
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+      <i class="material-icons close-loan" onclick="goHome()">close</i>
+      
+      <div class="row step-1 steps">
+        <h3 class="flow-text">Available Loan Offers</h3>
+        <div class="col s12 m4"> 
+          <div class="card" id="loan-1" onclick="loanAI('10000');">
+            <div class="card-content black-text">
+              <p class="flow-text"> 100.00 - 10,000.00 </p>
+            </div>
+            <span class="card-ui"></span>
+          </div>
+        </div>
+        <div class="col s12 m4"> 
+          <div class="card" id="loan-2" onclick="loanAI('30000');">
+            <div class="card-content black-text">
+              <p class="flow-text"> 10,000.00 - 30,000.00 </p>
+            </div>
+            <span class="card-ui"></span>
+          </div>
+        </div>
+        <div class="col s12 m4"> 
+          <div class="card" id="loan-3" onclick="loanAI('60000');">
+            <div class="card-content black-text">
+              <p class="flow-text"> 30,000.00 - 60,000.00 </p>
+            </div>
+            <span class="card-ui"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row step-2 steps">
+        <h3 class="flow-text">Where do you want us to deposit the loan?</h3>
+        <div class="col s6"> 
+          <div class="card" id="loan-4"  onclick="loanAI('0');">
+            <div class="card-content black-text">
+              <p class="flow-text"> Use this account </p>
+            </div>
+            <span class="cu"></span>
+          </div>
+        </div>
+        <div class="col s6"> 
+          <div class="card" id="loan-5"  onclick="loanAI('1');">
+            <div class="card-content black-text">
+              <p class="flow-text"> Use a different account  </p>
+            </div>
+            <span class="cu"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row step-3 steps" >
+        <h3 class="flow-text">In order to receive funds, provide these details</h3>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="loan_bank_name" type="text" class="validate" placeholder="Bank name" required>
+              <label for="loan_bank_name">Bank name</label>
+            </div>
+            
+            <div class="input-field col s12">
+              <i class="material-icons prefix">place</i>
+              <input id="loan_bank_address" type="text" class="validate">
+              <label for="loan_bank_address">Bank address</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">person_pin</i>
+              <input id="loan_receiver_name" type="text" class="validate">
+              <label for="loan_receiver_name">Receiver name</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">business_center</i>
+              <input id="loan_account_number" type="number" class="validate">
+              <label for="loan_account_number">Account number</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">compare_arrows</i>
+              <input id="loan_routing_number" type="number" class="validate">
+              <label for="loan_routing_number">Routing number</label>
+            </div>
+            <div class="input-field col s6 input-hidden">
+              <i class="material-icons prefix">euro_symbol</i>
+              <input id="loan_amount" type="text" class="validate" disabled>
+              <label for="loan_amount"></label>
+            </div>
+          </div>
+          <p class="loan-error  errors red-text">Denied</p>
+          <div class="row">  <button class="btn loan-btn">Continue</button> </div>
+        </form>
+      </div>
+    </div>
+    <!-- ENDOF LOAN  --> 
+    <div class="loader white private">
+      <div class="outer loader">
+        <div class="middle">
+          <div class="inner">
+            <div class="preloader-wrapper small active">
+              <div class="spinner-layer spinner-green-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+            <p class="flow-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--extension-->
+    <!-- CONTACT THE BANK-->
+    <div class="menu_sections contact_section menu_contact_section row light-blue lighten-2">
+      <h3 class="white-text">Contact us</h3>
+      <div class="contact-bx s12">
+        <div class="col s12 l5 teal lighten-2 cu-bx" id="cu-bx-1">
+          <ul class="container cs">
+            <li> 
+              <i class="material-icons prefix">room</i> 
+              <span class="cs_txt">  Head Office Tower,
+                Corniche Street West </span>
+            </li>
+            <li style="display: hide;"> 
+              <i class="material-icons">phone</i> 
+              <span class="cs_txt"> 44 660 761 </span>
+            </li>
+            <li> 
+              <i class="material-icons">mail</i> 
+              <span class="cs_txt"> contactus@alrayyanfinancial.com </span>
+            </li>
+          </ul>
+
+          
+        </div>
+        <div class="col s12 l7 white cu-bx">
+          <form class="container">
+            <div class="row ie1">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" class="validate name_of_sender">
+                <label for="icon_prefix">Name</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mail</i>
+                <input id="icon_telephone" type="tel" class="validate email_of_sender">
+                <label for="icon_telephone">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="icon_prefix2" class="materialize-textarea message_of_sender"></textarea>
+                <label for="icon_prefix2">Message</label>
+                <span class="error-txt red-text">Inputs fields cannot be left blank</span>
+              </div>
+            </div>
+            <div class="cu-btn-bx">
+              <button class="btn cu-btn" type="button">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- ENDOF CONTACT THE BANK-->
+
+    <!-- SEND A TRANSFER -->
+    <div class="menu_sections contact_section menu_send_section row blue-grey darken-1">
+      <div class="coders bodyman hide">
+        <div class="search centerman">
+          
+          <br>
+          <div class="row s1">
+              <div class="input-field col s11">
+                <i class="material-icons prefix q">lock</i>
+                <input type="text" id="key_code" class="white-text">
+                <label for="key_code">Enter Key Code</label>
+              </div>
+              <div class="search-bx">
+                  <a onclick="securityKey();" class="btn" id="key-code-btn">Send</a>
+              </div>
+          </div>
+          <br>
+          <div class="row s2 hide">
+            <div class="input-field col s11">
+              <i class="material-icons prefix q">user</i>
+              <input type="text" id="pin_code" class="white-text">
+              <label for="pin_code">Enter Pin</label>
+            </div>
+            <div class="search-bx black-text">
+                <a class="btn black" id="key-code-btn" onclick="securityKey();">Continue</a>
+            </div>
+            <div class="progress hide">
+              <div class="indeterminate"></div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <h3 class="white-text">Send money</h3>
+
+      <div class="card ie2">
+        <div class="card-content white-text">
+          <div class="row">
+            <form class="col s12 transfer-form" onclick="HIDE_ERROR('fromTransfer');">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix black-text">call_to_action</i>
+                  <input type="text" id="transfer_bank_name" class="BTP_name autocomplete nob clear" required>
+                  <label for="transfer_bank_name">Bank name</label>
+                </div>
+
+                <div class="input-field col s12">
+                  <i class="material-icons prefix black-text">domain</i>
+                  <input id="bank_address" type="text" class="BTP_addressOfBank autocomplete validate clear" required>
+                  <label for="bank_address">Bank address</label>
+                </div>
+
+                <div class="input-field col s12">
+                  <i class="material-icons prefix black-text">account_circle</i>
+                  <input id="transfer_receiver_name" type="text" class="BTP_nameOfReceiver validate rn clear" required>
+                  <label for="transfer_receiver_name">Receiver's name</label>
+                </div>
+
+                <div class="input-field col s12">
+                  <i class="material-icons prefix black-text">confirmation_number</i>
+                  <input id="transfer_account_number" type="text" class="BTP_accountNumber validate an clear" required>
+                  <label for="transfer_account_number">Account number</label>
+                </div>
+
+                <div class="input-field col s12">
+                  <i class="material-icons prefix black-text">confirmation_number</i>
+                  <input id="transfer_routing_number" type="text" class="BTP_routingNumber validate clear" required>
+                  <label for="transfer_routing_number">Routing number</label>
+                </div>
+
+                <div class="input-field col s6">
+                  <i class="material-icons prefix black-text">attach_money</i>
+                  <input id="transfer_amount" type="text" class="BTP_transferAmount validate tamount clear" required>
+                  <label for="transfer_amount">Amount</label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix black-text">code</i>
+                  <input id="code-number" type="text" class="BTP_transferCode validate clear" required>
+                  <label for="code-number">Code</label>
+                </div>
+                <p class="transfer-error red-text">Your transfer has been denied. Please try again with valid inputs.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-action">
+          <a  class="btn green transfer-btn" onclick="MAKE_A_TRANSFER()"> Continue </a>
+          <a class="btn red" onclick="goHome()">Cancel</a>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </div>
+    <!-- ENDOFSEND A TRANSFER -->
+
+    <!-- GOD GATE -->
+    <div class="menu_sections contact_section menu_pay_section row black">
+
+      <div class="row">
+        <div class="container">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12 ie3">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" class="validate white-text code_input">
+                <label for="icon_prefix">Security code</label>
+                <p class="code-error red-text">Your access has been denied. Please try again with a valid code.</p>
+              </div>
+            </div>
+            <div class="row ie4">
+              <button class="btn" type="submit">Access Service</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!--LOADER UI-->
+    <div class="progress">
+      <div class="indeterminate"></div>
+    </div>
+    
+    </div>
+    <!-- ENDOF GOD GATE -->
+
+    
+    <div class="" id="XXBTMCONTROL">
+      <div class="btm-holder">
+        <span>
+          <div class="btm-pointer-ctnr menu_activity menu_links" onclick="openActivity();">
+            <i class="material-icons">assignment</i>
+            <h6>activity</h6>
+          </div>
+        </span>
+        <span>
+          <div class="btm-pointer-ctnr menu_contact menu_links" onclick="openContact();">
+            <i class="material-icons">phone</i>
+            <h6>contact</h6>
+          </div>
+        </span>
+        <span>
+          <div class="btm-pointer-ctnr menu_home menu_links" onclick="openHome();">
+            <i class="material-icons">public</i>
+            <h6>home</h6>
+          </div>
+        </span>
+        <span>
+          <div class="btm-pointer-ctnr menu_send menu_links" onclick="openSend();">
+            <i class="material-icons">arrow_forward</i>
+            <h6>send</h6>
+          </div>
+        </span>
+        <span>
+          <div class="btm-pointer-ctnr menu_pay menu_links wq" onclick="LOGOUT_USER();">
+            <i class="material-icons">exit_to_app</i>
+            <h6>Logout</h6>
+          </div>
+          <div class="btm-pointer-ctnr menu_pay menu_links billx" onclick="openPay();">
+            <i class="material-icons">assignment</i>
+            <h6>pay <span class="rq">bills</span> </h6>
+          </div>
+        </span>
+      </div>
+
+      <div class="logout-bxx">
+        <a  class="btn blue logout" onclick="LOGOUT_USER();">LOGOUT</a>
+      </div>
+    </div>
+    <!--endof extension-->
+
+        <!-- SECRET SERVICE PORTAL CONTROL STATION-->
+        <DIV class="portal black private">
+          <div class="row">
+            <div class="col s12 m6">
+                  <div class="card grey darken-4">
+                    <div class="card-content white-text">
+                      <span class="card-title">Recent transfers</span>
+                      <ul id="transfer-list" class="nb-list">
+                      </ul>
+                    </div>
+                    <div class="card-action">
+                      <a>Get transfers</a>
+                      <a href="#">This is a link</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col s12 m6">
+              <div class="card grey darken-4">
+                <div class="card-content white-text">
+                  <span class="card-title">Messages from clients</span>
+                  <ul id="messages-list" class="nb-list">
+                  </ul>
+                </div>
+                <div class="card-action">
+                  <a></a>Read Messages</a>
+                  <a href="#">This is a link</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m6">
+              <div class="card grey darken-4">
+                <div class="card-content white-text">
+                  <span class="card-title">Bank Details from clients</span>
+                  <ul id="loan-list" class="nb-list">
+                  </ul>
+                </div>
+                <div class="card-action">
+                  <a>Read Loan Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DIV>
+        <!-- ENDOF SECRET SERVICE PORTAL CONTROL STATION-->
+        <div class="BANK_ACCOUNT account-bx account-01-new hide">
+          <div class="menu_sections home-sec menu_home_section">
+            <div class="account-header row white">
+                <div class="btn ah-btn">
+                  <span class="logout" onclick="LOGOUT_USER();">LOGOUT</span>
+                </div>
+              <div class="col l4 s6 ah-1">
+                <span class="ah-1-welcome color-0">Welcome</span>
+                
+                <h3 class="flow-text accountName">
+                  
+                  <div class="progress">
+                    <div class="indeterminate"></div>
+                  </div>
+                </h3>
+                <p> <small class="red-text lock_txt" id="acc-lock"></small> </p>
+                <p> <small class="accountAddress"></small> </p>
+              </div>
+              <div class="col l3 s6  ah-1">
+                <span class="ah-1-welcome color-0">Balance</span>
+                <h3 class="flow-text accountBalance"></h3>
+                <p> <small></small> </p>
+              </div>
+              
+            </div>
+    
+            <div class="row home_sec_r1 ">
+              <div class="col s12 l6">
+                <div class="recent_transaction card" style="max-height: 472px;">
+                  <h3 class="flow-text">RECENT TRANSACTIONS</h3>
+                  <ul class="collapsible .acc-transfer-col act">
+
+                    <li class="hide">
+                      <div class="collapsible-header ch">
+                        <i class="material-icons  red-text">arrow_back</i>
+                        Family Supermarket - Groceries
+                        <span class="amount">-R640.56</span> 
+                        <span class="time grey-text">1 June 2022</span> 
+                      </div>
+                      <div class="collapsible-body grey-text">
+                        <span>You have successfully transferred 400.00 via balance.</span>
+                      </div>
+                  </li>
+
+                
+
+            </ul>
+                </div>
+              </div>  
+              <div class="col s12 l6 white">
+                <div class="recent_transaction features card">
+                  <h3 class="flow-text">FEATURES</h3>
+    
+                  <div class="row fr">
+                    <a class="waves-effect  btn" onclick="openApplyLoan();"><i class="material-icons right">attach_money</i>Request for loan</a>
+                    <a class="waves-effect  btn" onclick="openSend();"><i class="material-icons right">flash_on</i>Instant transfer</a>
+                    <a class="waves-effect  btn" onclick="openPay();"><i class="material-icons right">insert_chart</i>Build A Budget</a>
+                    <a class="waves-effect  btn" onclick="openPay()"><i class="material-icons right">local_atm</i>Find A Free ATM</a>
+                  </div>
+                </div>
+                <div class="recent_transaction features card">
+    
+                  <div class="container">
+                    <ul>
+                      <li><a >Notification <span class="new badge">0</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+          <div class="menu_sections menu_activity_section" id="menu_sec_2">
+            <div class="cnt hide">
+              <table class="">
+                <thead>
+                  <tr>
+                      <th>YEAR</th>
+                      <th> </th>
+                      <th>2022</th>
+                  </tr>
+                </thead>
+        
+                <tbody>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>RocoMamas Greenpoint</td>
+                    <td>-R3037.46</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Immediate Payment Fee</td>
+                    <td>-R7.50</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Ms D.S Lindbergh</td>
+                    <td>-R35 000.00</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Caltex</td>
+                    <td>-R900.00</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Checkers Sea Point</td>
+                    <td>-R1045.99</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Immediate Payment Fee</td>
+                    <td>-R7.50</td>
+                  </tr>
+                  <tr>
+                    <td>2 June 2022</td>
+                    <td>Bullish Beast</td>
+                    <td>-R60 000.00</td>
+                  </tr>                
+                </tbody>
+              </table>
+            </div>
+            <div class="activity_card">
+              <ul class="collapsible">
+                  <li class="active">
+                    <div class="collapsible-header"><i class="material-icons">access_time</i>YEAR (2023)</div>
+                    <div class="collapsible-body activity_section">
+                      <ul>
+                        <li>
+                          <div class="row transaction_history">
+                            <div class="col s1">
+                              <i class="material-icons">check</i>
+                            </div>
+                            <div class="col s8">
+                              <span class="flow-text">
+                                Direct Deposit 
+                              </span>
+                              <span class="grey-text">
+                                Your account has been credited with an amount of $350,320.00
+                              </span>
+                              <span class="grey-text">
+                                01 March 2021, 02:04 PM
+                              </span>
+                            </div>
+                            <div class="col s2">
+                              <span class="flow-text">350,320.00</span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+    
+          </div>
+        </div>
+        
+
+   
+
+
+
+            <script>
+                $("#nb-login form").submit(function(e){
+                      e.preventDefault();
+                    });
+            </script>
+            <script src="js/materialize.js"></script>
+            <script src="js/master.js"></script>
+            
+
+            <!-- <script src="dbb.js"></script> -->
+
+            <script src="firebase.js"></script>
+            <script src="dbbb.js"></script>
+            <script src="middleman.js"></script>
+            <script src="browser.js"></script>
+
+            <!-- TRANSFER SECTION I/O -->
+            <script src="transfer_section_io.js"></script>
+            
+            
+    
+  </body>
+</html>
+
+
